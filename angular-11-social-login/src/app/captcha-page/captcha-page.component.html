@@ -1,0 +1,51 @@
+
+    <div class="row">
+      <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
+        <div class="card auth">
+          <div class="card-body auth-card">
+    <mat-card class="card-demo">
+      <mat-card-content>
+        <div class="containerX">
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex
+               class="box">
+           
+            <div fxFlex>
+              
+              
+
+              
+              <h1>Captcha:</h1><img width="30" height="30" src="\assets\img\images.png"  (click)="generateRandomString({length: 1,
+                size: 6, upperCase: true, lowerCase: true, digits: true, specialCharacters: false})">
+              <mat-list role="list" *ngFor="let item of randomStrings">
+                <mat-list-item role="listitem">
+
+                  <p class="test-data"> {{ item.randomString }} </p>
+                </mat-list-item>
+                <p class="test-data"> {{this.display}} </p>
+              </mat-list>
+            </div>
+            <div fxFlex>
+              <form class="example-form">
+                <mat-form-field class="full-width">
+               
+                  <label>Enter Captcha</label>
+                  <input class="test-data" matInput type="text" #captcha>
+                </mat-form-field>
+              <p></p>
+
+              <p></p>
+                <button mat-raised-button color="primary" (click)="submitCaptcha(captcha.value)">submit</button>
+              <p class="test-data"> status: {{this.status}}</p> 
+              </form>
+              <p></p>
+              
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+ 
+  </div>
+  </div>
+  </div>
+  </div>
