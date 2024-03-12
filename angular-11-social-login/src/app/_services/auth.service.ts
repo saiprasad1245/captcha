@@ -31,6 +31,21 @@ export class AuthService {
     }, httpOptions);
   }
   
+  payment(user): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'createPayment', user);
+  }
+
+  history(username): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'history'+'?username=' + username, '');
+  }
+  history_Wallet(username): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'history-wallet'+'?username=' + username, '');
+  }
+  
+  public downLoadCertificate(email, fileName) {
+    return this.http.get(AppConstants.AUTH_API + 'downloadCertificate' + '?email=' + email + '&fileName=' + fileName, { responseType: 'blob' });
+  }
+
   verify(credentials): Observable<any> {
     return this.http.post(AppConstants.AUTH_API + 'verify', credentials.code, {
     	  headers: new HttpHeaders({ 'Content-Type': 'text/plain' })

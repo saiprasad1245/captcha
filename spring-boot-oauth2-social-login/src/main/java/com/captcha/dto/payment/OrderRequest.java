@@ -4,15 +4,16 @@ import lombok.Data;
 
 
 public class OrderRequest {
-	private String customerName;
+	private String userName;
 	private String email;
 	private String phoneNumber;
 	private String amount;
-	public String getCustomerName() {
-		return customerName;
+	
+	public String getUserName() {
+		return userName;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getEmail() {
 		return email;

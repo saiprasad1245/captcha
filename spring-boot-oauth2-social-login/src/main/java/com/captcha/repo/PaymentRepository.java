@@ -10,10 +10,11 @@ import com.captcha.model.Attachments;
 import com.captcha.model.Order;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface PaymentRepository extends JpaRepository<Attachments, Long> {
 
-	Order findByRazorpayOrderId(String orderId);
+	@Query("from Attachments where email=?1 and fileName =?2")
+	Attachments getAttachments(String email, String fileName);
 	
-	@Query("from Order where userName=?1")
-	List<Order> getAllAttachments(String name);
+	@Query("from Attachments where name=?1")
+	List<Attachments> getAllAttachments(String name);
 }

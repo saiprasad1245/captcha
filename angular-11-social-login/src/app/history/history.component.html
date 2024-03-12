@@ -1,0 +1,50 @@
+<div class="cus-min-height" >
+	<div class="table-container cus-mat-table">
+		<cdk-virtual-scroll-viewport tvsItemSize="48" #cusMatTable class="wrapper custom-scroll mat-elevation-z2" [ngClass]="tableData">
+			<mat-table [dataSource]="tableData" matSortActive="name" (matSortChange)="sortEvent($event)" matSort>
+				
+				<ng-container matColumnDef="name">
+					<mat-header-cell style="flex:0.6" class="col-header-pad" *matHeaderCellDef mat-sort-header disableClear>Name
+					</mat-header-cell>
+					<mat-cell style="flex:0.6" *matCellDef="let element">
+						<span>{{element.name}}</span>
+						
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="email">
+					<mat-header-cell style="flex:1.3" class="col-header-pad" *matHeaderCellDef mat-sort-header disableClear>email
+					</mat-header-cell>
+					<mat-cell style="flex:1.3" *matCellDef="let element">{{ element.email }}
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="address">
+					<mat-header-cell style="flex:1.3" class="col-header-pad" *matHeaderCellDef mat-sort-header disableClear>Address
+					</mat-header-cell>
+					<mat-cell style="flex:1.3" *matCellDef="let element">{{ element.address }}
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="phone">
+					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>phone
+					</mat-header-cell>
+					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.phone }}
+					</mat-cell>
+				</ng-container>
+				
+				<ng-container matColumnDef="fileName">
+					<mat-header-cell class="col-header-pad justify-center" style="flex:0.4" *matHeaderCellDef disableClear>Link
+					</mat-header-cell>
+					<mat-cell style="flex:0.4" *matCellDef="let element" class="justify-center" [ngStyle]="{ color: '#949494' }" class="cursor-pointer justify-center">
+						<button color="primary" class="btn btn-primary btn-block" mat-icon-button  (click)=" downLoadCertificate(element) " matTooltip="Click to download {{element.fileName}}">
+							download
+						</button>
+						
+					</mat-cell>
+				</ng-container>
+				<mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+			</mat-table>
+		</cdk-virtual-scroll-viewport>
+	
+		
+	</div>
+</div>

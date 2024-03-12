@@ -1,0 +1,220 @@
+.cus-mat-table {
+  margin-top: 15px;
+  position: relative;
+}
+
+.cus-bulk-download-btn {
+  margin-right: -14px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.bulk-button-border {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.cus-btn-margin {
+  margin-left: 10px;
+}
+
+.cus-search-btn {
+  margin-top: -10px;
+}
+
+.cus-link {
+  text-decoration: underline;
+}
+
+.cus-min-height {
+  min-height: 13.9em;
+}
+
+.color-green {
+  color: white;
+  background-color: green;
+  border: 1px solid white;
+}
+
+.color-yellow {
+  color: black;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+.color-red {
+  color: white;
+  background-color: red;
+  border: 1px solid white;
+}
+
+.cus-table-header-text {
+  margin-bottom: 9px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.cus-margin-bottom {
+  margin-bottom: 16px;
+}
+
+mat-header-cell,
+mat-header-row,
+.mat-header-cell-def {
+  font-weight: bold;
+  font-size: 13px;
+  background-color: #4b4bff;
+  color: white;
+
+}
+
+
+::ng-deep .mat-sort-header-arrow {
+  color: white
+}
+
+::ng-deep .mat-sort-header-arrow :hover {
+  color: white
+}
+
+.filters-container {
+  overflow: hidden;
+  max-height: 50px;
+  transition: max-height .5s ease-in-out;
+ 
+}
+table {
+  width: 100%;
+}
+
+.full-width {
+  font-size: 14px;
+  width: 100%;
+}
+.role-header-text {
+  padding-bottom: 20px;
+  place-content: center !important;
+  font-size: 19px;
+}
+
+.searchForm ::ng-deep .mat-error {
+  font-size: 11px;
+  margin-top: -24px
+}
+
+
+.cus-table-height {
+
+  max-height: 25.125em;
+  overflow-y: auto;
+}
+
+.cus-table-min-height-5 {
+  height: 19.125em !important;
+}
+
+.cus-table-min-height-1 {
+  height: 6.6em !important;
+}
+
+.cus-table-min-height-2 {
+  height: 9.9em !important;
+}
+
+.cus-table-min-height-3 {
+  height: 12.9em !important;
+}
+
+.cus-table-min-height-4 {
+  height: 15.9em !important;
+}
+
+.cus-table-max-height {
+  height: 25.125em !important;
+}
+
+.cus-mat-column {
+
+  word-break: break-all;
+}
+
+.cus-column-pad-left {
+  padding-left: 4px;
+}
+
+.cus-column-pad-right {
+  padding-right: 4px;
+}
+
+.cus-mat-table mat-cell {
+  font-size: 12px;
+  padding-right: 2px;
+  padding-left: 2px;
+  word-break: break-all;
+}
+
+.col-header-pad {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.cus-export-button {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+.custom-spinner {
+  position: absolute;
+}
+
+.cus-link-highlighted {
+  color: white;
+  background-color: #3f51b5;
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.cus-add-supplier-btn {
+  position: absolute;
+  right: 18px;
+  top: 10px;
+}
+
+.cus-popup-link {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+::ng-deep .cdk-virtual-scroll-content-wrapper {
+   transform: translateY(0px) !important;
+}
+
+::ng-deep cdk-virtual-scroll-viewport {
+  transform: none !important;
+}
+
+.cus-mat-info-icon {
+  font-size: 22px;
+  height: 22px;
+  margin-left: 2px;
+  width: 22px;
+}

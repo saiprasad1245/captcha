@@ -65,6 +65,10 @@ public class User implements Serializable {
 
 	@Column(name = "USING_2FA")
 	private boolean using2FA;
+	
+	@Column(name = "sValue")
+	private int sValue;
+	
 
 	private String secret;
 
@@ -172,6 +176,14 @@ public class User implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public int getsValue() {
+		return sValue;
+	}
+
+	public void setsValue(int sValue) {
+		this.sValue = sValue;
 	}
 	
 }

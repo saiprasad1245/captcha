@@ -6,11 +6,11 @@ import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
 @Component({
-  selector: 'captcha-page',
-  templateUrl: './captcha-page.component.html',
-  styleUrls: ['./captcha-page.component.css']
+  selector: 'demo',
+  templateUrl: './demo.component.html',
+  styleUrls: ['./demo.component.css']
 })
-export class CaptchaComponent implements OnInit {
+export class DemoComponent implements OnInit {
   title = 'Captcha Generator';
   initialUrl =  environment.apiBaseUrl;
   display: any;
@@ -44,7 +44,7 @@ export class CaptchaComponent implements OnInit {
 
   generateRandomString( parameters ): void {
     this.stop();
-    this.http.post(`${this.initialUrl}api/auth/randomData`, parameters)
+    this.http.post(`${this.initialUrl}api/auth/demorandomData`, parameters)
       .subscribe(data => {
           this.randomStrings = data;
           this.start();
@@ -72,7 +72,7 @@ export class CaptchaComponent implements OnInit {
 
   submit(value) {
     console.log(value)
-    return this.http.get(`${this.initialUrl}api/auth/random/check/${value}/${this.username}`)
+    return this.http.get(`${this.initialUrl}api/auth/random/democheck/${value}`)
     .pipe(map(result => {
       console.log(result)
       return result;

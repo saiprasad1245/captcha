@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.captcha.models.RandomString;
 import com.captcha.models.RandomStringDao;
 
-@Service
+
 public class KafkaReceiver {
 
     private static final Logger LOG = LoggerFactory.getLogger(KafkaReceiver.class);

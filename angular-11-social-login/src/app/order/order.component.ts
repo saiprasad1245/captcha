@@ -1,5 +1,6 @@
 import { HostListener, Component } from '@angular/core';
 import { OrderService } from '../_services/order.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 declare var Razorpay: any;
 
@@ -13,9 +14,29 @@ export class OrderComponent {
 	form: any = {}; 
 	paymentId: string;
 	error: string;
-  
-	constructor(private orderService: OrderService) {
+    private roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username: string;
+	constructor(private orderService: OrderService,private tokenStorageService: TokenStorageService) {
 
+	}
+
+	ngOnInit() {
+	this.isLoggedIn = this.tokenStorageService.getUser();
+    console.log("this.isLoggedIn"+this.isLoggedIn);
+        if (this.isLoggedIn) {
+          const user = this.tokenStorageService.getUser();
+          this.roles = user.roles;
+    
+          this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+          this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+    
+          this.username = user.displayName;
+          console.log("this.isLoggedIn"+user);
+      
+        }
 	}
 
 	options = {
@@ -52,7 +73,7 @@ export class OrderComponent {
 	onSubmit(): void {
 		this.paymentId = ''; 
 		this.error = ''; 
-		this.orderService.createOrder(this.form).subscribe(
+		this.orderService.createOrder(this.form,this.username).subscribe(
 		data => {
 			this.options.key = data.secretKey;
 			this.options.order_id = data.razorpayOrderId;
@@ -85,7 +106,7 @@ export class OrderComponent {
 
 	@HostListener('window:payment.success', ['$event']) 
 	onPaymentSuccess(event): void {
-		this.orderService.updateOrder(event.detail).subscribe(
+		this.orderService.updateOrder(event.detail,this.username).subscribe(
 		data => {
 			this.paymentId = data.message;
 		}

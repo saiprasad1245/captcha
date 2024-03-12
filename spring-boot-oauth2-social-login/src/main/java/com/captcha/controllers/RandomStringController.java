@@ -1,6 +1,7 @@
 package com.captcha.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +9,11 @@ import java.util.List;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,22 +26,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.captcha.config.CurrentUser;
 import com.captcha.dto.ApiResponse;
+import com.captcha.dto.AttachmentsDto;
 import com.captcha.dto.JwtAuthenticationResponse;
 import com.captcha.dto.LocalUser;
 import com.captcha.dto.SignUpRequest;
+import com.captcha.model.Attachments;
+import com.captcha.model.Order;
 import com.captcha.model.User;
 import com.captcha.models.LoginData;
-import com.captcha.models.LoginRepository;
 import com.captcha.models.RandomString;
 import com.captcha.models.RandomStringDao;
-import com.captcha.models.Registration;
+import com.captcha.repo.OrderRepository;
+import com.captcha.repo.UserRepository;
 import com.captcha.security.jwt.TokenProvider;
 import com.captcha.service.UserService;
-import com.captcha.services.KafkaSender;
 import com.captcha.util.GeneralUtils;
 import com.captcha.utils.RandomStringOptions;
 import com.captcha.utils.ResponseMessage;
@@ -51,15 +60,7 @@ public class RandomStringController {
 
     @Autowired
     private RandomStringDao _randomStringDao;
-    
-    @Autowired
-    private com.captcha.models.RegisterRepository registerRepository;
-    
-    @Autowired
-    private LoginRepository loginrepo;
 
-    @Autowired
-    private KafkaSender kafkaSender;
     
     @Autowired
 	UserService userService;
@@ -72,7 +73,16 @@ public class RandomStringController {
     
     @Autowired
 	TokenProvider tokenProvider;
-
+    
+    @Autowired
+    com.captcha.repo.PaymentRepository PaymentRepository;
+    
+    @Autowired
+    UserRepository userRepo;
+    
+    @Autowired
+    OrderRepository orderRepo;
+    
     @GetMapping(value = "/random/all")
     public List<RandomString> getAll() {
         List<RandomString> result = _randomStringDao.findAll();
@@ -88,7 +98,34 @@ public class RandomStringController {
         List<RandomString> result = stringGenerator.generate(request);
 
         for (RandomString randomString : result) {
-            kafkaSender.send(randomString.getRandomString());
+        	RandomString randomString1 = new RandomString(randomString.getRandomString());
+            randomString1.setCreatedTime(new Date());
+            //randomString1.setTime(60);
+            randomString1.setId(_randomStringDao.getMaxId()+1);
+            _randomStringDao.save(randomString1);
+            
+        }
+
+        Collections.reverse(result);
+
+        return result;
+    }
+    
+    @RequestMapping(value = "/demorandomData", method = RequestMethod.POST, produces = "application/json")
+    public List<RandomString> createDemo(@RequestBody RandomStringOptions request) {
+        StringGenerator stringGenerator = new StringGenerator();
+        if (request.length > 100) {
+            request.length = 100;
+        }
+        List<RandomString> result = stringGenerator.generate(request);
+
+        for (RandomString randomString : result) {
+        	RandomString randomString1 = new RandomString(randomString.getRandomString());
+            randomString1.setCreatedTime(new Date());
+            //randomString1.setTime(60);
+            randomString1.setId(_randomStringDao.getMaxId()+1);
+            _randomStringDao.save(randomString1);
+            
         }
 
         Collections.reverse(result);
@@ -136,13 +173,75 @@ public class RandomStringController {
     	
     }
     
-	public Registration getSupplierJson(String claimMesg){
+    @PostMapping(value="/createPayment")
+	public ResponseEntity<ResponseMessage> createpayment(@RequestParam("claimFile") MultipartFile[] file, @RequestParam("supplr") String claimMesg){
+		try {
+			AttachmentsDto suprelDto = getSupplierJson(claimMesg);
+			if(null == suprelDto) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
+			Attachments att = new Attachments();
+			att.setAddress(suprelDto.getAddress());
+			att.setEmail(suprelDto.getEmail());
+			att.setFile(file[0].getBytes());
+			att.setFileName(file[0].getName());
+			att.setName(suprelDto.getName());
+			att.setPhone(suprelDto.getPhone());
+			PaymentRepository.save(att);	
+			//suprelOriginatorService.createIncidentClaim(suprelMaster, file);
 		
-		Registration suppDto = new Registration();
+		 return  ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage("Incident Claim Created Successfully"));
+		}catch(Exception e){
+			
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+    @PostMapping(value="/history")
+    public List<AttachmentsDto> getAttachments(@RequestParam("username") String username){
+    	List<AttachmentsDto> dto = new ArrayList<AttachmentsDto>();
+    	List<Attachments>  attchments = PaymentRepository.getAllAttachments(username);
+    	
+    	for(Attachments att:attchments) {
+    		AttachmentsDto dt = new AttachmentsDto();
+    		dt.setAddress(att.getAddress());
+    		dt.setEmail(att.getEmail());
+    		dt.setFileName(att.getFileName());
+    		dt.setName(att.getName());
+    		dt.setPhone(att.getPhone());
+    		dto.add(dt);
+    	}
+    	return dto;
+    }
+    
+    @PostMapping(value="/history-wallet")
+    public List<Order> getAttachmentsOrder(@RequestParam("username") String username){
+    	///List<AttachmentsDto> dto = new ArrayList<AttachmentsDto>();
+    	List<Order>  attchments = orderRepo.getAllAttachments(username);
+    	
+    	
+    	return attchments;
+    }
+    
+	@GetMapping(value="/downloadCertificate")
+	public ResponseEntity< Resource > downloadCertificate(@RequestParam("email") String email,@RequestParam("fileName") String fileName){
+		try {
+			Attachments fileDet = PaymentRepository.getAttachments(email, fileName);
+				return ResponseEntity.ok()
+						.contentType(MediaType.parseMediaType("application/pdf"))
+						.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+						.body(new ByteArrayResource(fileDet.getFile()));
+		}catch(Exception e){
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+	
+	public AttachmentsDto getSupplierJson(String claimMesg){
+		
+		AttachmentsDto suppDto = new AttachmentsDto();
 		
 		try {
 			ObjectMapper objMapper = new ObjectMapper();
-			suppDto = objMapper.readValue(claimMesg, Registration.class);
+			suppDto = objMapper.readValue(claimMesg, AttachmentsDto.class);
 			
 		}catch(IOException e) {
 		
@@ -151,9 +250,23 @@ public class RandomStringController {
 		return suppDto;
 		
 	}
-    @RequestMapping(value = "/random/check/{value}", method = RequestMethod.GET, produces = "application/json")
-    public List<RandomString> check(@PathVariable("value") String value) {
+    @RequestMapping(value = "/random/check/{value}/{username}", method = RequestMethod.GET, produces = "application/json")
+    public List<RandomString> check(@PathVariable("value") String value, @PathVariable("username") String username) {
     	List<RandomString> result = _randomStringDao.getRandomDataById(value);
+    	int count = userRepo.getCount(username);
+    	if(result.size()>0) {
+    		count = count+1;
+    		userRepo.updateUserData(username,count);
+    	}
+    	result.get(0).setTime(count);
+        return result;
+    }
+    
+    @RequestMapping(value = "/random/democheck/{value}", method = RequestMethod.GET, produces = "application/json")
+    public List<RandomString> democheck(@PathVariable("value") String value) {
+    	List<RandomString> result = _randomStringDao.getRandomDataById(value);
+    	
+    	result.get(0).setTime(1);
         return result;
     }
     

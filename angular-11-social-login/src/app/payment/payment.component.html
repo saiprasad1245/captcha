@@ -1,0 +1,53 @@
+<div class="col-md-12">
+	<div class="card card-container">
+		
+		<form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+			<div class="form-group">
+				<label for="displayName">Display Name</label> <input type="text" class="form-control" name="displayName" [(ngModel)]="form.displayName" required minlength="3"
+					maxlength="20" #displayName="ngModel" />
+				<div class="alert-danger" *ngIf="f.submitted && displayName.invalid">
+					<div *ngIf="displayName.errors.required">Display Name is required</div>
+					<div *ngIf="displayName.errors.minlength">Display Name must be at least 3 characters</div>
+					<div *ngIf="displayName.errors.maxlength">Display Name must be at most 20 characters</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label> <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel" />
+				<div class="alert-danger" *ngIf="f.submitted && email.invalid">
+					<div *ngIf="email.errors.required">Email is required</div>
+					<div *ngIf="email.errors.email">Email must be a valid email address</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address">Address</label> <input type="address" class="form-control" name="address" [(ngModel)]="form.address" required minlength="100"
+					#address="ngModel" />
+				<div class="alert-danger" *ngIf="f.submitted && address.invalid">
+					<div *ngIf="address.errors.required">address is required</div>
+
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="phone">phone</label> <input type="phone" class="form-control" name="phone" [(ngModel)]="form.phone"
+					required minlength="10" #phone="ngModel" />
+				<div class="alert-danger" *ngIf="f.submitted && phone.invalid">
+					<div *ngIf="phone.errors.required">phone is required</div>
+					<div *ngIf="phone.errors.minlength">phone must be at least 6 characters</div>
+				</div>
+			</div>
+            <input type="file" (change)="upload($event.target.files)" />
+            Upload Percent: {{percentDone}}% <br />
+            
+            <ng-container *ngIf="uploadSuccess">
+              Upload Successful
+            </ng-container> 
+			<div class="form-group">
+				<button class="btn btn-primary btn-block">submit</button>
+			</div>
+			
+		</form>
+		<div class="alert alert-success" *ngIf="isSuccessful">
+			Your payment is successful!
+			
+		</div>
+	</div>
+</div>

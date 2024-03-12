@@ -67,7 +67,7 @@ class AuthControllerTest {
 
 	@Test
 	public void testRegisterUser() throws Exception {
-		SignUpRequest signUpRequest = new SignUpRequest("1234", "captcha", user.getEmail(), user.getPassword(), user.getPassword(), SocialProvider.FACEBOOK);
+		SignUpRequest signUpRequest = new SignUpRequest("1234", "captcha", user.getEmail(), user.getPassword(), user.getPassword(), SocialProvider.FACEBOOK,1);
 		Mockito.when(userService.registerNewUser(any(SignUpRequest.class))).thenReturn(user);
 		String json = mapper.writeValueAsString(signUpRequest);
 		mockMvc.perform(post("/api/auth/signup").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON))

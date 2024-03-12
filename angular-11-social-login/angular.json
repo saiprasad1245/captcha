@@ -191,5 +191,8 @@
       }
     }
   },
-  "schematics" : null
+  "schematics": null,
+  "cli": {
+    "analytics": "22cd6718-888e-42e0-8f11-df3361780ee8"
+  }
 }

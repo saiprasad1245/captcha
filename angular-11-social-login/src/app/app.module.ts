@@ -35,7 +35,12 @@ import { OrderComponent } from './order/order.component';
 import { CaptchaComponent } from './captcha-page/captcha-page.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
-
+import { PaymentComponent } from './payment/payment.component';
+import { HistoryComponent } from './history/history.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DemoComponent } from './demo/demo.component';
+import { HistoryWalletComponent } from './history-wallet/history-wallet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +49,11 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     HomeComponent,
     ProfileComponent,
     OrderComponent,
-    CaptchaComponent
+    CaptchaComponent,
+    PaymentComponent,
+    HistoryComponent,
+    DemoComponent,
+    HistoryWalletComponent
   ],
   imports: [
     BrowserModule,
@@ -59,10 +68,12 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     MatInputModule,
     MatListModule,
     MatToolbarModule,
+    MatPaginatorModule,
     MatSelectModule,
     MatSlideToggleModule,
     MatCardModule,
     MatSnackBarModule,
+    MatTableModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

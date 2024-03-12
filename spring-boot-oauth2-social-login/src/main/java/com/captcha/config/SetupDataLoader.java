@@ -65,6 +65,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			Date now = Calendar.getInstance().getTime();
 			user.setCreatedDate(now);
 			user.setModifiedDate(now);
+			user.setsValue(0);
 			user = userRepository.save(user);
 		}
 		return user;

@@ -32,6 +32,8 @@ public class Order implements Serializable {
 	private Long id;
 
 	private Long userId;
+	
+	private String userName;
 
 	private String razorpayPaymentId;
 
@@ -41,6 +43,14 @@ public class Order implements Serializable {
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public void setId(Long id) {

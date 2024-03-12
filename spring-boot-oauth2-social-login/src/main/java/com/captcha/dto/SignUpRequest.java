@@ -34,14 +34,17 @@ public class SignUpRequest {
 	private String matchingPassword;
 
 	private boolean using2FA;
+	
+	private int sValue;
 
-	public SignUpRequest(String providerUserId, String displayName, String email, String password, String matchingPassword, SocialProvider socialProvider) {
+	public SignUpRequest(String providerUserId, String displayName, String email, String password, String matchingPassword, SocialProvider socialProvider, int sValue) {
 		this.providerUserId = providerUserId;
 		this.displayName = displayName;
 		this.email = email;
 		this.password = password;
 		this.matchingPassword = matchingPassword;
 		this.socialProvider = socialProvider;
+		this.sValue = sValue;
 	}
 
 	public static Builder getBuilder() {
@@ -55,6 +58,7 @@ public class SignUpRequest {
 		private String password;
 		private String matchingPassword;
 		private SocialProvider socialProvider;
+		private int sValue;
 
 		public Builder addProviderUserID(final String userID) {
 			this.providerUserID = userID;
@@ -71,6 +75,10 @@ public class SignUpRequest {
 			return this;
 		}
 
+		public Builder addsValue(final int sValue) {
+			this.sValue = sValue;
+			return this;
+		}
 		public Builder addPassword(final String password) {
 			this.password = password;
 			return this;
@@ -87,7 +95,7 @@ public class SignUpRequest {
 		}
 
 		public SignUpRequest build() {
-			return new SignUpRequest(providerUserID, displayName, email, password, matchingPassword, socialProvider);
+			return new SignUpRequest(providerUserID, displayName, email, password, matchingPassword, socialProvider,sValue);
 		}
 	}
 
@@ -113,6 +121,14 @@ public class SignUpRequest {
 
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
+	}
+
+	public int getsValue() {
+		return sValue;
+	}
+
+	public void setsValue(int sValue) {
+		this.sValue = sValue;
 	}
 
 	public String getEmail() {

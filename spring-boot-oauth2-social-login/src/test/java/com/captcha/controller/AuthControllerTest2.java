@@ -76,7 +76,7 @@ class AuthControllerTest2 {
 
 	@Test
 	public void testRegisterUser() throws Exception {
-		SignUpRequest signUpRequest = new SignUpRequest("1234", "captcha", user.getEmail(), user.getPassword(), user.getPassword(), SocialProvider.FACEBOOK);
+		SignUpRequest signUpRequest = new SignUpRequest("1234", "captcha", user.getEmail(), user.getPassword(), user.getPassword(), SocialProvider.FACEBOOK,1);
 		// Test when user provided email already exists in the database
 		Mockito.when(userService.registerNewUser(any(SignUpRequest.class))).thenReturn(user);
 		String json = mapper.writeValueAsString(signUpRequest);

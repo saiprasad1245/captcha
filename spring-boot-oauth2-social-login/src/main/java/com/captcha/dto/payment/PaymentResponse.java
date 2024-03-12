@@ -7,6 +7,7 @@ public class PaymentResponse {
 	private String razorpayOrderId;
 	private String razorpayPaymentId;
 	private String razorpaySignature;
+	private String userName;
 	public String getRazorpayOrderId() {
 		return razorpayOrderId;
 	}
@@ -24,6 +25,12 @@ public class PaymentResponse {
 	}
 	public void setRazorpaySignature(String razorpaySignature) {
 		this.razorpaySignature = razorpaySignature;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
