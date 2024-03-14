@@ -10,6 +10,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { HistoryComponent } from './history/history.component';
 import { DemoComponent } from './demo/demo.component';
 import { HistoryWalletComponent } from './history-wallet/history-wallet.component';
+import { ALLHistoryComponent } from './allhistory/allhistory.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'history', component: HistoryComponent },
   { path: 'demo', component: DemoComponent },
   { path: 'history-wallet', component: HistoryWalletComponent },
+  { path: 'allhistory', component: ALLHistoryComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

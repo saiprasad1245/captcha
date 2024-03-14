@@ -41,6 +41,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DemoComponent } from './demo/demo.component';
 import { HistoryWalletComponent } from './history-wallet/history-wallet.component';
+import { ALLHistoryComponent } from './allhistory/allhistory.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { HistoryWalletComponent } from './history-wallet/history-wallet.componen
     PaymentComponent,
     HistoryComponent,
     DemoComponent,
-    HistoryWalletComponent
+    HistoryWalletComponent,
+    ALLHistoryComponent
   ],
   imports: [
     BrowserModule,

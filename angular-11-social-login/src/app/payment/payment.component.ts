@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { TokenStorageService } from '../_services/token-storage.service';
 @Component({
   selector: 'payment',
   templateUrl: './payment.component.html',
@@ -18,9 +19,40 @@ export class PaymentComponent implements OnInit {
   errorMesg: string;
   percentDone: number;
   uploadSuccess: boolean;
-  constructor(private authService: AuthService,private router: Router) { }
+  private roles: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username: string;
+  amount: any;
+  constructor(private authService: AuthService,private router: Router,private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.tokenStorageService.getUser();
+    console.log("this.isLoggedIn"+this.isLoggedIn);
+        if (this.isLoggedIn) {
+          const user = this.tokenStorageService.getUser();
+          this.roles = user.roles;
+    
+          this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+          this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+    
+          this.username = user.displayName;
+		  this.amount = user.refundAmount;
+
+          console.log("this.user.refundAmount"+user.refundAmount);
+      
+        }
+
+    this.authService.withdraw(this.username).subscribe(
+      data => {
+        console.log(data);
+        this.amount = data;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+      }
+    );
   }
 
   upload(files: File[]){

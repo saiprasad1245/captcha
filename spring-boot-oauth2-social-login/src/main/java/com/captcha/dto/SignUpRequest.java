@@ -37,7 +37,9 @@ public class SignUpRequest {
 	
 	private int sValue;
 
-	public SignUpRequest(String providerUserId, String displayName, String email, String password, String matchingPassword, SocialProvider socialProvider, int sValue) {
+	private int refundAmount;
+	
+	public SignUpRequest(String providerUserId, String displayName, String email, String password, String matchingPassword, SocialProvider socialProvider, int sValue, int refundAmount) {
 		this.providerUserId = providerUserId;
 		this.displayName = displayName;
 		this.email = email;
@@ -45,6 +47,7 @@ public class SignUpRequest {
 		this.matchingPassword = matchingPassword;
 		this.socialProvider = socialProvider;
 		this.sValue = sValue;
+		this.refundAmount = refundAmount;
 	}
 
 	public static Builder getBuilder() {
@@ -59,6 +62,7 @@ public class SignUpRequest {
 		private String matchingPassword;
 		private SocialProvider socialProvider;
 		private int sValue;
+		private int refundAmount;
 
 		public Builder addProviderUserID(final String userID) {
 			this.providerUserID = userID;
@@ -79,6 +83,10 @@ public class SignUpRequest {
 			this.sValue = sValue;
 			return this;
 		}
+		public Builder addrefundAmount(final int refundAmount) {
+			this.refundAmount = refundAmount;
+			return this;
+		}
 		public Builder addPassword(final String password) {
 			this.password = password;
 			return this;
@@ -95,7 +103,7 @@ public class SignUpRequest {
 		}
 
 		public SignUpRequest build() {
-			return new SignUpRequest(providerUserID, displayName, email, password, matchingPassword, socialProvider,sValue);
+			return new SignUpRequest(providerUserID, displayName, email, password, matchingPassword, socialProvider,sValue,refundAmount);
 		}
 	}
 
@@ -161,6 +169,14 @@ public class SignUpRequest {
 
 	public void setMatchingPassword(String matchingPassword) {
 		this.matchingPassword = matchingPassword;
+	}
+
+	public int getRefundAmount() {
+		return refundAmount;
+	}
+
+	public void setRefundAmount(int refundAmount) {
+		this.refundAmount = refundAmount;
 	}
 
 	public boolean isUsing2FA() {

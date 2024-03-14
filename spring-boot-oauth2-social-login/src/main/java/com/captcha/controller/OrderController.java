@@ -71,7 +71,7 @@ public class OrderController {
 	@PutMapping("/order")
 	public ResponseEntity<?> updateOrder(@RequestBody PaymentResponse paymentResponse) {
 		String errorMsg = orderService.validateAndUpdateOrder(paymentResponse.getRazorpayOrderId(), paymentResponse.getRazorpayPaymentId(), paymentResponse.getRazorpaySignature(),
-				razorPayClientConfig.getSecret(),paymentResponse.getUserName());
+				razorPayClientConfig.getSecret(),paymentResponse.getUserName(),paymentResponse.getAmount());
 		if (errorMsg != null) {
 			return new ResponseEntity<>(new ApiResponse(false, errorMsg), HttpStatus.BAD_REQUEST);
 		}

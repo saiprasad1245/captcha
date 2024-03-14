@@ -10,11 +10,11 @@ import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
-  selector: 'history-wallet',
-  templateUrl: './history-wallet.component.html',
-  styleUrls: ['./history-wallet.component.css'],
+  selector: 'allhistory',
+  templateUrl: './allhistory.component.html',
+  styleUrls: ['./allhistory.component.css'],
 })
-export class HistoryWalletComponent implements OnInit {
+export class ALLHistoryComponent implements OnInit {
   @ViewChild('cusMatTable', { read: ElementRef }) public cusMatTable: ElementRef<any>;
   @ViewChild('fromDateInput') fromDateInput: ElementRef;
   @ViewChild('toDateInput') toDateInput: ElementRef;
@@ -47,12 +47,11 @@ export class HistoryWalletComponent implements OnInit {
   selectedSupplierCodesForDownloading = [];
   tableData: any;
   displayedColumns = [
-    'id',
-    'razorpay_order_id',
-    'razorpay_payment_id',
-    'razorpay_signature',
-    'user_id',
-    'amount'
+    'name',
+    'email',
+    'address',
+    'phone',
+    'fileName'
   ];
   
 
@@ -93,7 +92,7 @@ export class HistoryWalletComponent implements OnInit {
       
         }
 
-    this.authService.history_Wallet(this.username).subscribe(
+    this.authService.allhistory().subscribe(
       data => {
         console.log(data);
         this.supplierData = data;

@@ -69,6 +69,9 @@ public class User implements Serializable {
 	@Column(name = "sValue")
 	private int sValue;
 	
+	@Column(name = "refund_amount")
+	private int refundAmount;
+	
 
 	private String secret;
 
@@ -184,6 +187,14 @@ public class User implements Serializable {
 
 	public void setsValue(int sValue) {
 		this.sValue = sValue;
+	}
+
+	public int getRefundAmount() {
+		return refundAmount;
+	}
+
+	public void setRefundAmount(int refundAmount) {
+		this.refundAmount = refundAmount;
 	}
 	
 }

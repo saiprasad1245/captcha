@@ -40,6 +40,8 @@ public class Order implements Serializable {
 	private String razorpayOrderId;
 
 	private String razorpaySignature;
+	
+	private int amount;
 
 	public Long getId() {
 		return id;
@@ -91,6 +93,14 @@ public class Order implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 }

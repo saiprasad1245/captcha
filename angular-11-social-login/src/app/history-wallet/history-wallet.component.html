@@ -37,7 +37,12 @@
 					</mat-cell>
 				</ng-container>
 
-				
+				<ng-container matColumnDef="amount">
+					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>amount
+					</mat-header-cell>
+					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.amount }}
+					</mat-cell>
+				</ng-container>
 				
 				<mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
 				<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

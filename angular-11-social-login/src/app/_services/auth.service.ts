@@ -38,6 +38,16 @@ export class AuthService {
   history(username): Observable<any> {
     return this.http.post(AppConstants.AUTH_API + 'history'+'?username=' + username, '');
   }
+
+  withdraw(username): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'withdraw'+'?username=' + username, '');
+  }
+
+  allhistory(): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'allhistory', httpOptions);
+  }
+
+
   history_Wallet(username): Observable<any> {
     return this.http.post(AppConstants.AUTH_API + 'history-wallet'+'?username=' + username, '');
   }

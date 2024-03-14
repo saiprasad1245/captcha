@@ -213,6 +213,23 @@ public class RandomStringController {
     	return dto;
     }
     
+    @PostMapping(value="/allhistory")
+    public List<AttachmentsDto> getAllAttachments(){
+    	List<AttachmentsDto> dto = new ArrayList<AttachmentsDto>();
+    	List<Attachments>  attchments = PaymentRepository.findAll();
+    	
+    	for(Attachments att:attchments) {
+    		AttachmentsDto dt = new AttachmentsDto();
+    		dt.setAddress(att.getAddress());
+    		dt.setEmail(att.getEmail());
+    		dt.setFileName(att.getFileName());
+    		dt.setName(att.getName());
+    		dt.setPhone(att.getPhone());
+    		dto.add(dt);
+    	}
+    	return dto;
+    }
+    
     @PostMapping(value="/history-wallet")
     public List<Order> getAttachmentsOrder(@RequestParam("username") String username){
     	///List<AttachmentsDto> dto = new ArrayList<AttachmentsDto>();
@@ -257,10 +274,25 @@ public class RandomStringController {
     	if(result.size()>0) {
     		count = count+1;
     		userRepo.updateUserData(username,count);
+    		if(count>=10) {
+    			int staticAmount = 500;
+    			int amount = userRepo.getAmount(username);
+    			int final_amount = amount+staticAmount;
+    			userRepo.updateUserAmount(username, final_amount);
+    		}
+    		result.get(0).setTime(count);
     	}
-    	result.get(0).setTime(count);
+    	
         return result;
     }
+    @RequestMapping(value = "/withdraw", method = RequestMethod.POST, produces = "application/json")
+    public int withdraw( @RequestParam("username") String username) {
+
+    	int amount = userRepo.getAmount(username);
+
+    	return amount;
+    }
+    
     
     @RequestMapping(value = "/random/democheck/{value}", method = RequestMethod.GET, produces = "application/json")
     public List<RandomString> democheck(@PathVariable("value") String value) {

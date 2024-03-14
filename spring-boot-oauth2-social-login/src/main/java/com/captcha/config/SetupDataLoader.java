@@ -66,6 +66,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setCreatedDate(now);
 			user.setModifiedDate(now);
 			user.setsValue(0);
+			user.setRefundAmount(0);
 			user = userRepository.save(user);
 		}
 		return user;

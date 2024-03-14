@@ -1,6 +1,8 @@
 <div class="col-md-12">
 	<div class="card card-container">
-		
+		<div>
+			withdraw Amount: {{this.amount}}
+		</div>
 		<form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
 			<div class="form-group">
 				<label for="displayName">Display Name</label> <input type="text" class="form-control" name="displayName" [(ngModel)]="form.displayName" required minlength="3"
@@ -35,7 +37,7 @@
 				</div>
 			</div>
             <input type="file" (change)="upload($event.target.files)" />
-            Upload Percent: {{percentDone}}% <br />
+            
             
             <ng-container *ngIf="uploadSuccess">
               Upload Successful

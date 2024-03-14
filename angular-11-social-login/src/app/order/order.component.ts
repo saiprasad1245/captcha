@@ -19,6 +19,7 @@ export class OrderComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
+	amount: any;
 	constructor(private orderService: OrderService,private tokenStorageService: TokenStorageService) {
 
 	}
@@ -34,7 +35,9 @@ export class OrderComponent {
           this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
     
           this.username = user.displayName;
-          console.log("this.isLoggedIn"+user);
+		  this.amount = user.refundAmount;
+
+          console.log("this.user.refundAmount"+user.refundAmount);
       
         }
 	}
@@ -106,7 +109,7 @@ export class OrderComponent {
 
 	@HostListener('window:payment.success', ['$event']) 
 	onPaymentSuccess(event): void {
-		this.orderService.updateOrder(event.detail,this.username).subscribe(
+		this.orderService.updateOrder(event.detail,this.username,this.form.amount).subscribe(
 		data => {
 			this.paymentId = data.message;
 		}
