@@ -8,11 +8,12 @@
 	
 		
 			<li class="nav-item"><a href="/captcha-page" class="nav-link" *ngIf="isLoggedIn" routerLink="captcha-page">Captcha</a></li>
-			<li class="nav-item"><a href="/order" class="nav-link" *ngIf="isLoggedIn" routerLink="order">wallet</a></li>
-			<li class="nav-item"><a href="/payment" class="nav-link" *ngIf="isLoggedIn" routerLink="payment">withdraw</a></li>
-			<li class="nav-item"><a href="/history" class="nav-link" *ngIf="isLoggedIn" routerLink="history">history</a></li>
-			<li class="nav-item"><a href="/history-wallet" class="nav-link" *ngIf="isLoggedIn" routerLink="history-wallet">history Wallet</a></li>
+			<li class="nav-item"><a href="/order" class="nav-link" *ngIf="isLoggedIn && !this.showAdminBoard" routerLink="order">wallet</a></li>
+			<li class="nav-item"><a href="/payment" class="nav-link" *ngIf="isLoggedIn && !this.showAdminBoard" routerLink="payment">withdraw</a></li>
+			<li class="nav-item"><a href="/history" class="nav-link" *ngIf="isLoggedIn && !this.showAdminBoard" routerLink="history">history</a></li>
+			<li class="nav-item"><a href="/history-wallet" class="nav-link" *ngIf="isLoggedIn && !this.showAdminBoard" routerLink="history-wallet">history Wallet</a></li>
 			<li class="nav-item"><a href="/allhistory" class="nav-link" *ngIf="isLoggedIn && this.showAdminBoard " routerLink="allhistory">All History</a></li>
+			<li class="nav-item"><a href="/allhistory-wallet" class="nav-link" *ngIf="isLoggedIn && this.showAdminBoard " routerLink="allhistory-wallet">All History Wallet</a></li>
 		</ul>
 		<ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
 			<li class="nav-item"><a href="/register" class="nav-link" routerLink="register">Sign Up</a></li>

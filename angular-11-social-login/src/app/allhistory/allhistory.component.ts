@@ -51,6 +51,7 @@ export class ALLHistoryComponent implements OnInit {
     'email',
     'address',
     'phone',
+    'amount',
     'fileName'
   ];
   
@@ -138,8 +139,8 @@ export class ALLHistoryComponent implements OnInit {
      console.log("updateTableData",this.supplierData)
      console.log("updateTableData",this.supplierData.length)
      this.pageLength = this.supplierData.length;
-     console.log(response.slice(0, 1))
-      this.tableData = new MatTableDataSource(this.supplierData.slice(0, 1))
+     console.log(response.slice(0, this.pageLength))
+      this.tableData = new MatTableDataSource(this.supplierData.slice(0, this.pageLength))
     
     //this.getPageOptions();
   }

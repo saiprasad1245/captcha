@@ -35,7 +35,7 @@ export class OrderComponent {
           this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
     
           this.username = user.displayName;
-		  this.amount = user.refundAmount;
+		 // this.amount = user.refundAmount;
 
           console.log("this.user.refundAmount"+user.refundAmount);
       

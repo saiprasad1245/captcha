@@ -2,6 +2,8 @@ package com.captcha.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -11,6 +13,9 @@ import javax.persistence.Table;
 public class Attachments {
 
 	@Id
+	@Column(name = "id")
+	private Long id;
+	
 	@Column(name="name")
 	private String name;
 	
@@ -30,8 +35,28 @@ public class Attachments {
 	@Column(name="ATTACHMENT")
 	private byte[] file;
 
+	@Column(name="amount")
+	private int amount;
+	
+	
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setName(String name) {

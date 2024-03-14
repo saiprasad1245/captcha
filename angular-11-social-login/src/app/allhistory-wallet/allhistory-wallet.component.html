@@ -1,0 +1,54 @@
+<div class="cus-min-height" >
+	<div class="table-container cus-mat-table">
+		<cdk-virtual-scroll-viewport tvsItemSize="48" #cusMatTable class="wrapper custom-scroll mat-elevation-z2" [ngClass]="tableData">
+			<mat-table [dataSource]="tableData" matSortActive="name" (matSortChange)="sortEvent($event)" matSort>
+				
+				<ng-container matColumnDef="id">
+					<mat-header-cell style="flex:0.6" class="col-header-pad" *matHeaderCellDef mat-sort-header disableClear>id
+					</mat-header-cell>
+					<mat-cell style="flex:0.6" *matCellDef="let element">
+						<span>{{element.id}}</span>
+						
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="razorpay_order_id">
+					<mat-header-cell style="flex:1.3" class="col-header-pad" *matHeaderCellDef mat-sort-header disableClear>razorpayOrderId
+					</mat-header-cell>
+					<mat-cell style="flex:1.3" *matCellDef="let element">{{ element.razorpayOrderId }}
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="razorpay_payment_id">
+					<mat-header-cell style="flex:1.3" class="col-header-pad" *matHeaderCellDef mat-sort-header disableClear>razorpayPaymentId
+					</mat-header-cell>
+					<mat-cell style="flex:1.3" *matCellDef="let element">{{ element.razorpayPaymentId }}
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="razorpay_signature">
+					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>razorpaySignature
+					</mat-header-cell>
+					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.razorpaySignature }}
+					</mat-cell>
+				</ng-container>
+				
+				<ng-container matColumnDef="user_id">
+					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>user_id
+					</mat-header-cell>
+					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.userName }}
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="amount">
+					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>amount
+					</mat-header-cell>
+					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.amount }}
+					</mat-cell>
+				</ng-container>
+				
+				<mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+			</mat-table>
+		</cdk-virtual-scroll-viewport>
+	
+		
+	</div>
+</div>

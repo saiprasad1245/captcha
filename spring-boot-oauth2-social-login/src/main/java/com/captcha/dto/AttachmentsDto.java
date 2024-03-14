@@ -20,6 +20,19 @@ public class AttachmentsDto {
 	private String address;
 	
 	private String fileName;
+	
+	private int amount;
+
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 
 	public String getName() {
@@ -54,6 +67,16 @@ public class AttachmentsDto {
 
 	public String getAddress() {
 		return address;
+	}
+
+
+	public int getAmount() {
+		return amount;
+	}
+
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.captcha.dto.SocialProvider;
+import com.captcha.model.Attachments;
 import com.captcha.model.Role;
 import com.captcha.model.User;
 import com.captcha.models.RandomString;
@@ -33,6 +34,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	  @Autowired
+	    com.captcha.repo.PaymentRepository PaymentRepository;
+	
 	@Autowired
 	private RandomStringDao RandomStringDao;
 
@@ -42,6 +46,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		if (alreadySetup) {
 			return;
 		}
+		Attachments att = new Attachments();
+		att.setId((long) 0);
+		att.setAddress("test");
+		att.setEmail("test");
+		att.setFileName("test");
+		att.setName("test");
+		att.setPhone("test");
+		att.setAmount(0);
+		PaymentRepository.save(att);
 		// Create initial roles
 		Role userRole = createRoleIfNotFound(Role.ROLE_USER);
 		Role adminRole = createRoleIfNotFound(Role.ROLE_ADMIN);
@@ -68,6 +81,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setsValue(0);
 			user.setRefundAmount(0);
 			user = userRepository.save(user);
+			
+			
 		}
 		return user;
 	}
@@ -77,6 +92,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		r.setId(1);
 		r.setRandomString("asdfr2");
 		RandomStringDao.save(r);
+		
 	}
 
 	@Transactional

@@ -51,6 +51,10 @@ export class AuthService {
   history_Wallet(username): Observable<any> {
     return this.http.post(AppConstants.AUTH_API + 'history-wallet'+'?username=' + username, '');
   }
+
+  allhistory_Wallet(): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'allhistory-wallet', '');
+  }
   
   public downLoadCertificate(email, fileName) {
     return this.http.get(AppConstants.AUTH_API + 'downloadCertificate' + '?email=' + email + '&fileName=' + fileName, { responseType: 'blob' });

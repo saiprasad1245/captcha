@@ -29,6 +29,12 @@
 					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.phone }}
 					</mat-cell>
 				</ng-container>
+				<ng-container matColumnDef="amount">
+					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>amount
+					</mat-header-cell>
+					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.amount }}
+					</mat-cell>
+				</ng-container>
 				
 				<ng-container matColumnDef="fileName">
 					<mat-header-cell class="col-header-pad justify-center" style="flex:0.4" *matHeaderCellDef disableClear>Link

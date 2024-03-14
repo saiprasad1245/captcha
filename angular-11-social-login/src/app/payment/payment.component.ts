@@ -25,6 +25,7 @@ export class PaymentComponent implements OnInit {
   showModeratorBoard = false;
   username: string;
   amount: any;
+  amount1: any;
   constructor(private authService: AuthService,private router: Router,private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
@@ -38,16 +39,13 @@ export class PaymentComponent implements OnInit {
           this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
     
           this.username = user.displayName;
-		  this.amount = user.refundAmount;
-
-          console.log("this.user.refundAmount"+user.refundAmount);
       
         }
 
     this.authService.withdraw(this.username).subscribe(
       data => {
-        console.log(data);
-        this.amount = data;
+        console.log("amount",data);
+        this.amount1 = data;
       },
       err => {
         this.errorMessage = err.error.message;
@@ -74,6 +72,7 @@ export class PaymentComponent implements OnInit {
       phone: this.form.phone.trim(),
       address: this.form.address.trim(),
       email: this.form.email.trim(),
+      amount: this.form.amount.trim(),
     }
 
     const sendObjInFormData = new FormData()

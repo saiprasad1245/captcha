@@ -36,4 +36,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Modifying
 	@Query(value="update user set refund_amount=?2 where display_name=?1",nativeQuery = true)
 	int updateUserAmount(String unsername, int amount);
+	
 }

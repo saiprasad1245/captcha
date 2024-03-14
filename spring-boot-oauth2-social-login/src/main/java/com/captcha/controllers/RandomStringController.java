@@ -181,13 +181,17 @@ public class RandomStringController {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 			}
 			Attachments att = new Attachments();
+			att.setId(PaymentRepository.getMaxId()+1);
 			att.setAddress(suprelDto.getAddress());
 			att.setEmail(suprelDto.getEmail());
 			att.setFile(file[0].getBytes());
 			att.setFileName(file[0].getName());
 			att.setName(suprelDto.getName());
 			att.setPhone(suprelDto.getPhone());
-			PaymentRepository.save(att);	
+			att.setAmount(suprelDto.getAmount());
+			PaymentRepository.save(att);
+			int amount = userRepo.getAmount(suprelDto.getName());
+			userRepo.updateUserAmount(suprelDto.getName(), amount-suprelDto.getAmount());
 			//suprelOriginatorService.createIncidentClaim(suprelMaster, file);
 		
 		 return  ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage("Incident Claim Created Successfully"));
@@ -208,6 +212,7 @@ public class RandomStringController {
     		dt.setFileName(att.getFileName());
     		dt.setName(att.getName());
     		dt.setPhone(att.getPhone());
+    		dt.setAmount(att.getAmount());
     		dto.add(dt);
     	}
     	return dto;
@@ -225,6 +230,7 @@ public class RandomStringController {
     		dt.setFileName(att.getFileName());
     		dt.setName(att.getName());
     		dt.setPhone(att.getPhone());
+    		dt.setAmount(att.getAmount());
     		dto.add(dt);
     	}
     	return dto;
@@ -234,6 +240,15 @@ public class RandomStringController {
     public List<Order> getAttachmentsOrder(@RequestParam("username") String username){
     	///List<AttachmentsDto> dto = new ArrayList<AttachmentsDto>();
     	List<Order>  attchments = orderRepo.getAllAttachments(username);
+    	
+    	
+    	return attchments;
+    }
+    
+    @PostMapping(value="/allhistory-wallet")
+    public List<Order> getAllAttachmentsOrder(){
+    	///List<AttachmentsDto> dto = new ArrayList<AttachmentsDto>();
+    	List<Order>  attchments = orderRepo.findAll();
     	
     	
     	return attchments;
@@ -297,9 +312,9 @@ public class RandomStringController {
     @RequestMapping(value = "/random/democheck/{value}", method = RequestMethod.GET, produces = "application/json")
     public List<RandomString> democheck(@PathVariable("value") String value) {
     	List<RandomString> result = _randomStringDao.getRandomDataById(value);
-    	
+
     	result.get(0).setTime(1);
-        return result;
+    	return result;
     }
     
     @PostMapping("/verify")

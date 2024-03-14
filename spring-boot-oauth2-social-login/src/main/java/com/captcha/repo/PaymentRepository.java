@@ -17,4 +17,7 @@ public interface PaymentRepository extends JpaRepository<Attachments, Long> {
 	
 	@Query("from Attachments where name=?1")
 	List<Attachments> getAllAttachments(String name);
+	
+	@Query(value="select max(id) FROM attachments",nativeQuery = true)
+	Long getMaxId();
 }
