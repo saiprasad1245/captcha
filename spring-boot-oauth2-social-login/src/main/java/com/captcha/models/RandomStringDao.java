@@ -17,7 +17,7 @@ public interface RandomStringDao extends JpaRepository<RandomString, String> {
 	@Query(value="select * from randoms where random_string=?1",nativeQuery = true)
 	List<RandomString> getRandomDataById(String randomString);
 	
-	@Query(value="select max(id) FROM spring.randoms",nativeQuery = true)
+	@Query(value="select max(id) FROM randoms",nativeQuery = true)
 	Long getMaxId();
 	
 	@Modifying

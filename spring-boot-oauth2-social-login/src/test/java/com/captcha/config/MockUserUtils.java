@@ -17,7 +17,7 @@ public class MockUserUtils {
 		user.setId(1L);
 		user.setEmail(username);
 		user.setPassword("secret");
-		Role role = new Role();
+		Role role = new Role("");
 		role.setName(Role.ROLE_PRE_VERIFICATION_USER);
 		user.setRoles(Set.of(role));
 		user.setEnabled(true);

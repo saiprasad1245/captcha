@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://server.captcha.xyz/',
-  clientUrl: '?redirect_uri=https://client.captcha.xyz/login'
+  apiBaseUrl: 'http://captchadocker-env.eba-f7bxacja.us-east-1.elasticbeanstalk.com/',
+  clientUrl: '?redirect_uri=http://captchadocker-env.eba-f7bxacja.us-east-1.elasticbeanstalk.com/'
 };

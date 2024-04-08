@@ -46,10 +46,6 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public Role() {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

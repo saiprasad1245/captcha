@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080/',
-  clientUrl: '?redirect_uri=http://localhost:8080/login'
+  apiBaseUrl: 'http://captchadocker-env.eba-f7bxacja.us-east-1.elasticbeanstalk.com/',
+  clientUrl: '?redirect_uri=http://captchadocker-env.eba-f7bxacja.us-east-1.elasticbeanstalk.com/'
 };
 
 /*
