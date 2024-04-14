@@ -5,3 +5,9 @@
 .test-data{
     color: rgb(199, 46, 110);
 }
+
+.card{
+  width: 500px;
+  transform: translateY(25%);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

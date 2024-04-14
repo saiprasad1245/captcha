@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #1537ab;
+    --error-message: #f44336;
+    --secondary-color: #4086f4;
+    --btn-bg-color: #000000;
+    --btn-text-color: #ffffff;
+
+  }
+  body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+ }
+.primary-bg-color{
+    background-color: #000000;
+}
+.primary-text-color{
+    color: #ffffff;
+}
+
+.error-msg-color{
+    color: var(--error-message);
+}

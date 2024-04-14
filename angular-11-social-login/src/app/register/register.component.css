@@ -4,13 +4,15 @@ label {
 }
 
 .card-container.card {
-  max-width: 400px !important;
-  padding: 40px 40px;
+  max-width: 450px !important;
+  /* padding: 40px 40px; */
+  transform: translateY(20%);
+
 }
 
 .card {
-  background-color: #f7f7f7;
-  padding: 20px 25px 30px;
+  /* background-color: #f7f7f7;
+  padding: 20px 25px 30px; */
   margin: 0 auto 25px;
   margin-top: 50px;
   -moz-border-radius: 2px;
@@ -29,4 +31,35 @@ label {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+}
+
+.register-page{
+	height: 100vh;
+    margin-top: -50px;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+	height: 100vh;
+	overflow: hidden;
+	/* height: 100%; */
+	/* max-height: 100%; */
+}
+
+.signup-btn:hover, .signup-btn:focus{
+	background-color: var(--btn-bg-color);
+	color: #a7b8e2;
+	border:0;
+	box-shadow: 0 0 0 0.1rem #212529a3;
+}
+
+.error-msg-color{
+	font-size: 12px;
+}
+
+.card-header{
+  border-bottom: 1px solid var(--btn-bg-color);
+  background: none;
+}
+
+.card-title{
+	border-radius: 5px 5px 0px 0px;
+	margin: -1px;
 }
