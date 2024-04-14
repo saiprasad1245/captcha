@@ -185,7 +185,7 @@ public class RandomStringController {
 			att.setAddress(suprelDto.getAddress());
 			att.setEmail(suprelDto.getEmail());
 			att.setFile(file[0].getBytes());
-			att.setFileName(file[0].getName());
+			att.setFileName(file[0].getOriginalFilename());
 			att.setName(suprelDto.getName());
 			att.setPhone(suprelDto.getPhone());
 			att.setAmount(suprelDto.getAmount());
