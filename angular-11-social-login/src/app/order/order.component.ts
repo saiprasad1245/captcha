@@ -36,7 +36,7 @@ export class OrderComponent {
     
           this.username = user.displayName;
 		 // this.amount = user.refundAmount;
-
+			console.log(this.username)
           console.log("this.user.refundAmount"+user.refundAmount);
       
         }
@@ -81,7 +81,7 @@ export class OrderComponent {
 			this.options.key = data.secretKey;
 			this.options.order_id = data.razorpayOrderId;
 			this.options.amount = data.applicationFee; //paise
-			this.options.prefill.name = this.form.name;
+			this.options.prefill.name = this.username;
 			this.options.prefill.email = this.form.email;
 			this.options.prefill.contact = this.form.phone;
 			var rzp1 = new Razorpay(this.options);

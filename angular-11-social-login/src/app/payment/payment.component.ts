@@ -39,7 +39,7 @@ export class PaymentComponent implements OnInit {
           this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
     
           this.username = user.displayName;
-      
+          console.log(this.username)
         }
 
     this.authService.withdraw(this.username).subscribe(
@@ -55,20 +55,21 @@ export class PaymentComponent implements OnInit {
 
   upload(files: File[]){
     //pick from one of the 4 styles of file uploads below
+    console.log(files)
     this.uploadAndProgress(files);
   }
 
   uploadAndProgress(files: File[]){
     console.log(files[0])
     this.selectedFile = files[0];
-    
+    console.log(this.selectedFile)
 
   }
 
   onSubmit(): void {
     console.log("onsubmit")
     const sendData = {
-      name: this.form.displayName.trim(),
+      name: this.username.trim(),
       phone: this.form.phone.trim(),
       address: this.form.address.trim(),
       email: this.form.email.trim(),
@@ -76,7 +77,7 @@ export class PaymentComponent implements OnInit {
     }
 
     const sendObjInFormData = new FormData()
-   
+    console.log(this.selectedFile)
     sendObjInFormData.append('claimFile', this.selectedFile ? this.selectedFile : new Blob())
     sendObjInFormData.append('supplr', JSON.stringify(sendData));
     this.authService.payment(sendObjInFormData).subscribe(

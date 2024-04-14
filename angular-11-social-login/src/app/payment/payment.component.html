@@ -1,26 +1,31 @@
 <div class="col-md-12">
+	<p style="text-align:center">Withdraw Total Amount credited</p>
 	<div class="card card-container">
 		<div>
 			Total Amount: {{this.amount1}}
 		</div>
 		<form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
-			<div class="form-group">
-				<label for="displayName">Display Name</label> <input type="text" class="form-control" name="displayName" [(ngModel)]="form.displayName" required minlength="3"
-					maxlength="20" #displayName="ngModel" />
+			<div class="d-flex flex-column justify-content-center p-3">
+			<div class="d-flex justify-content-between">
+			<div class="form-group mr-1">
+				<label for="displayName">Display Name</label> <input type="text" class="form-control" name="displayName" [(ngModel)]="username" required minlength="3"
+					maxlength="20" #displayName="ngModel" readonly/>
 				<div class="alert-danger" *ngIf="f.submitted && displayName.invalid">
 					<div *ngIf="displayName.errors.required">Display Name is required</div>
 					<div *ngIf="displayName.errors.minlength">Display Name must be at least 3 characters</div>
 					<div *ngIf="displayName.errors.maxlength">Display Name must be at most 20 characters</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group mr-1">
 				<label for="email">Email</label> <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel" />
 				<div class="alert-danger" *ngIf="f.submitted && email.invalid">
 					<div *ngIf="email.errors.required">Email is required</div>
 					<div *ngIf="email.errors.email">Email must be a valid email address</div>
 				</div>
 			</div>
-			<div class="form-group">
+			</div>
+			<div class="d-flex justify-content-between">
+			<div class="form-group mr-1">
 				<label for="address">Address</label> <input type="address" class="form-control" name="address" [(ngModel)]="form.address" required minlength="100"
 					#address="ngModel" />
 				<div class="alert-danger" *ngIf="f.submitted && address.invalid">
@@ -28,15 +33,16 @@
 
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group mr-1">
 				<label for="phone">phone</label> <input type="phone" class="form-control" name="phone" [(ngModel)]="form.phone"
 					required minlength="10" #phone="ngModel" />
 				<div class="alert-danger" *ngIf="f.submitted && phone.invalid">
 					<div *ngIf="phone.errors.required">phone is required</div>
 					<div *ngIf="phone.errors.minlength">phone must be at least 6 characters</div>
 				</div>
+				</div>
 			</div>
-
+			</div>
 			<div class="form-group">
 				<label for="amount">Withdraw Amount</label> <input type="amount" class="form-control" name="amount" [(ngModel)]="form.amount"
 					required minlength="10" #amount="ngModel" />
@@ -45,6 +51,7 @@
 					<div *ngIf="amount>this.amount1">amount more entered</div>
 				</div>
 			</div>
+			
             <input type="file" (change)="upload($event.target.files)" />
             
             
@@ -54,11 +61,12 @@
 			<div class="form-group">
 				<button class="btn btn-primary btn-block">submit</button>
 			</div>
-			
+		
 		</form>
 		<div class="alert alert-success" *ngIf="isSuccessful">
 			Your payment is successful!
 			
 		</div>
+
 	</div>
 </div>
