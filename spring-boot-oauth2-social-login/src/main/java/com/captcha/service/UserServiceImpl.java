@@ -67,9 +67,9 @@ public class UserServiceImpl implements UserService {
 
 	private User buildUser(final SignUpRequest formDTO) {
 		User user = new User();
-		user.setDisplayName(formDTO.getDisplayName());
-		user.setEmail(formDTO.getEmail());
-		user.setPassword(passwordEncoder.encode(formDTO.getPassword()));
+		user.setDisplayName(formDTO.getDisplayName().trim());
+		user.setEmail(formDTO.getEmail().trim());
+		user.setPassword(passwordEncoder.encode(formDTO.getPassword().trim()));
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_USER));
 		user.setRoles(roles);
