@@ -32,6 +32,13 @@
 					</mat-cell>
 				</ng-container>
 
+				<ng-container matColumnDef="type">
+					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>Type
+					</mat-header-cell>
+					<mat-cell style="flex:0.7" *matCellDef="let element">{{ element.type }}
+					</mat-cell>
+				</ng-container>
+
 				<ng-container matColumnDef="amount">
 					<mat-header-cell class="col-header-pad" style="flex:0.7" *matHeaderCellDef mat-sort-header disableClear>amount
 					</mat-header-cell>

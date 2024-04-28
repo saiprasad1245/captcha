@@ -68,6 +68,10 @@ export class PaymentComponent implements OnInit {
 
   onSubmit(): void {
     console.log("onsubmit")
+    if(this.form.amount.trim()>this.amount1){
+      alert("Entered amount is greater than wallet amount, please check ");
+      return;
+    }
     const sendData = {
       name: this.username.trim(),
       phone: this.form.phone.trim(),

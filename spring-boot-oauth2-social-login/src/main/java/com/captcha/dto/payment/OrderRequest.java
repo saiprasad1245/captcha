@@ -7,6 +7,7 @@ public class OrderRequest {
 	private String userName;
 	private String email;
 	private String phoneNumber;
+	private String type;
 	private String amount;
 	
 	public String getUserName() {
@@ -32,6 +33,12 @@ public class OrderRequest {
 	}
 	public void setAmount(String amount) {
 		this.amount = amount;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

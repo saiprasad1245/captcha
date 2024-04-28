@@ -8,6 +8,7 @@ public class PaymentResponse {
 	private String razorpayPaymentId;
 	private String razorpaySignature;
 	private String userName;
+	private String type;
 	private int amount;
 	public String getRazorpayOrderId() {
 		return razorpayOrderId;
@@ -38,6 +39,12 @@ public class PaymentResponse {
 	}
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

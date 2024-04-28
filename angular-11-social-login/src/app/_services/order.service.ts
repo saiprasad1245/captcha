@@ -18,20 +18,24 @@ export class OrderService {
 	}
   
 	createOrder(order,username): Observable<any> {
+		console.log(order)
+		console.log(username)
 		return this.http.post(AppConstants.API_URL + 'order', {
 		userName: username,
 		email: order.email,
 		phoneNumber: order.phone,
+		type : order.type,
 		amount: order.amount
 		}, httpOptions);
 	}
   
-	updateOrder(order,username,amount): Observable<any> {
+	updateOrder(order,username,amount,type): Observable<any> {
 		return this.http.put(AppConstants.API_URL + 'order', {
 		razorpayOrderId: order.razorpay_order_id,
 		userName: username,
 		razorpayPaymentId: order.razorpay_payment_id,
 		razorpaySignature: order.razorpay_signature,
+		type : type,
 		amount:amount
 		}, httpOptions);
 	}

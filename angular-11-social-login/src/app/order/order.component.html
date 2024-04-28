@@ -31,7 +31,16 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="amount">Amount</label> <input type="number" class="form-control" name="amount" [(ngModel)]="form.amount" required #amount="ngModel" />
+				<label for="type">Subscription Type</label>
+				<mat-radio-group [(ngModel)]="form.type" (ngModelChange)="radioSelect()">
+					<mat-radio-button value="Monthly"    required >Monthly</mat-radio-button>
+					<mat-radio-button value="Quaterly"   required >Quaterly</mat-radio-button>
+					<mat-radio-button value="Yearly"  required >Yearly</mat-radio-button>
+				  </mat-radio-group>
+				
+			</div>
+			<div class="form-group">
+				<label for="amount">Amount</label> <input type="number" class="form-control" name="amount" [(ngModel)]="this.value" required #amount="ngModel" readonly/>
 				<div class="alert alert-danger" role="alert" *ngIf="f.submitted && amount.invalid">
 					<div *ngIf="amount.errors.required">Amount is required</div>
 				</div>

@@ -33,7 +33,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderComponent } from './order/order.component';
 import { CaptchaComponent } from './captcha-page/captcha-page.component';
-
+import { MatRadioModule } from '@angular/material/radio';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { PaymentComponent } from './payment/payment.component';
 import { HistoryComponent } from './history/history.component';
@@ -43,6 +43,7 @@ import { DemoComponent } from './demo/demo.component';
 import { HistoryWalletComponent } from './history-wallet/history-wallet.component';
 import { ALLHistoryComponent } from './allhistory/allhistory.component';
 import { AllHistoryWalletComponent } from './allhistory-wallet/allhistory-wallet.component';
+import { BlockCopyPasteDirective } from './captcha-page/captcha-disable';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { AllHistoryWalletComponent } from './allhistory-wallet/allhistory-wallet
     DemoComponent,
     HistoryWalletComponent,
     ALLHistoryComponent,
-    AllHistoryWalletComponent
+    AllHistoryWalletComponent,
+    BlockCopyPasteDirective
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { AllHistoryWalletComponent } from './allhistory-wallet/allhistory-wallet
     MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatRadioModule,
     MatListModule,
     MatToolbarModule,
     MatPaginatorModule,

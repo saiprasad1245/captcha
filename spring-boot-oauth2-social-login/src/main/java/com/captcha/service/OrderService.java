@@ -31,7 +31,8 @@ public class OrderService {
 	}
 
 	@Transactional
-	public String validateAndUpdateOrder(final String razorpayOrderId, final String razorpayPaymentId, final String razorpaySignature, final String secret, final String userName,final int amount) {
+	public String validateAndUpdateOrder(final String razorpayOrderId, final String razorpayPaymentId, final String razorpaySignature, 
+			final String secret, final String userName,final int amount, final String type) {
 		String errorMsg = null;
 		try {
 			Order order = orderRepository.findByRazorpayOrderId(razorpayOrderId);
@@ -43,6 +44,7 @@ public class OrderService {
 				order.setRazorpayPaymentId(razorpayPaymentId);
 				order.setRazorpaySignature(razorpaySignature);
 				order.setUserName(userName);
+				order.setType(type);
 				order.setAmount(amount);
 				orderRepository.save(order);
 			} else {

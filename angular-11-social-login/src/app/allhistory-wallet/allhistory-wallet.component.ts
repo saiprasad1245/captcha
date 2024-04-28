@@ -51,6 +51,7 @@ export class AllHistoryWalletComponent implements OnInit {
     'razorpay_order_id',
     'razorpay_payment_id',
     'user_id',
+    'type',
     'amount'
   ];
   

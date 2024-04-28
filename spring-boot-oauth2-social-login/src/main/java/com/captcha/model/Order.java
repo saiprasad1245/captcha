@@ -42,6 +42,8 @@ public class Order implements Serializable {
 	private String razorpaySignature;
 	
 	private int amount;
+	
+	private String type;
 
 	public Long getId() {
 		return id;
@@ -73,6 +75,14 @@ public class Order implements Serializable {
 
 	public void setRazorpayPaymentId(String razorpayPaymentId) {
 		this.razorpayPaymentId = razorpayPaymentId;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getRazorpayOrderId() {

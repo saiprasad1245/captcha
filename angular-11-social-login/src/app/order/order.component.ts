@@ -20,10 +20,23 @@ export class OrderComponent {
   showModeratorBoard = false;
   username: string;
 	amount: any;
+	value:any;
+	showcontent:string;
 	constructor(private orderService: OrderService,private tokenStorageService: TokenStorageService) {
 
 	}
-
+	radioSelect(){
+		this.showcontent=this.form.type;
+		console.log(this.showcontent)
+		if(this.showcontent =="Monthly"){
+			this.value = 100;
+		}else if(this.showcontent =="Quaterly"){
+			this.value = 500;
+		}else if(this.showcontent =="Yearly"){
+			this.value = 1000;
+		}
+		this.form.amount=this.value;
+	  }
 	ngOnInit() {
 	this.isLoggedIn = this.tokenStorageService.getUser();
     console.log("this.isLoggedIn"+this.isLoggedIn);
@@ -76,6 +89,7 @@ export class OrderComponent {
 	onSubmit(): void {
 		this.paymentId = ''; 
 		this.error = ''; 
+		console.log(this.form)
 		this.orderService.createOrder(this.form,this.username).subscribe(
 		data => {
 			this.options.key = data.secretKey;
@@ -109,7 +123,7 @@ export class OrderComponent {
 
 	@HostListener('window:payment.success', ['$event']) 
 	onPaymentSuccess(event): void {
-		this.orderService.updateOrder(event.detail,this.username,this.form.amount).subscribe(
+		this.orderService.updateOrder(event.detail,this.username,this.form.amount,this.form.type).subscribe(
 		data => {
 			this.paymentId = data.message;
 		}

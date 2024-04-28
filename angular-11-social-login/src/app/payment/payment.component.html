@@ -48,7 +48,7 @@
 					required minlength="10" #amount="ngModel" />
 				<div class="alert-danger" *ngIf="f.submitted && amount.invalid">
 					<div *ngIf="amount.errors.required">amount is required</div>
-					<div *ngIf="amount>this.amount1">amount more entered</div>
+					
 				</div>
 			</div>
 			

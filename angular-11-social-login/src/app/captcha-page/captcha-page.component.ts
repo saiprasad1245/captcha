@@ -38,8 +38,12 @@ export class CaptchaComponent implements OnInit {
     
           this.username = user.displayName;
           console.log("this.isLoggedIn"+user);
+          console.log("this.value"+user.sValue);
           this.countmatch = user.sValue;
         }
+        const parameters =  {length: 1,
+          size: 6, upperCase: true, lowerCase: true, digits: true, specialCharacters: false};
+          this.generateRandomString( parameters );
   }
 
   generateRandomString( parameters ): void {
