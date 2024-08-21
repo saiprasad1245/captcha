@@ -1,0 +1,461 @@
+<div class="edit-incident-popup scrollbar custom-scroll" style="font-family: 'Roboto-Medium';">
+    <mat-spinner *ngIf="isLoading" class="cus-mat-spinner" [diameter]="50"></mat-spinner>
+
+    <div class="justify-center">
+        <h2 mat-dialog-title style="margin-bottom:0px">Supplier Relationship Incident Claim Details</h2>
+
+    </div>
+    <form [formGroup]="editIncidentForm" style="display: block !important" [ngClass]="isLoading ? 'loader':''">
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Code</mat-label>
+                    <input matInput formControlName="supplierCode" placeholder="Supplier Code" readonly="true">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('supplierCode').touched && !editIncidentForm.get('supplierCode').hasError('minlength') && !editIncidentForm.get('supplierCode').hasError('required') && !editIncidentForm.get('supplierCode').hasError('whitespace') && editIncidentForm.get('supplierCode').hasError('pattern')">
+                    Special characters not allowed
+                </mat-error>
+                <mat-error
+                    *ngIf="editIncidentForm.get('supplierCode').touched && editIncidentForm.get('supplierCode').hasError('minlength') && !editIncidentForm.get('supplierCode').hasError('required') && !editIncidentForm.get('supplierCode').hasError('whitespace')">
+                    Enter a valid Supplier code
+                </mat-error>
+                <mat-error
+                    *ngIf="editIncidentForm.get('supplierCode').touched && (editIncidentForm.get('supplierCode').hasError('required') || editIncidentForm.get('supplierCode').hasError('whitespace'))">
+                    Supplier code is required!
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Name</mat-label>
+                    <input matInput formControlName="supplierName" placeholder="Supplier Name" readonly="true">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('supplierName').touched && (editIncidentForm.get('supplierName').hasError('required') || editIncidentForm.get('supplierName').hasError('whitespace'))">
+                    Supplier name is required!
+                </mat-error>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>SUPREL #</mat-label>
+                    <input matInput formControlName="suprelIncidentNumber" placeholder="SUPREL #" readonly="true">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('suprelIncidentNumber').touched && editIncidentForm.get('suprelIncidentNumber').hasError('required')">
+                    SUPREL # is required!
+                </mat-error>
+            </div>
+
+            <span fxFlex></span>
+
+
+            <div *ngIf="userDetails.userRoleId == 4 && editIncidentForm.get('incidentStatus').value != 'Final' "
+                class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Incident Status</mat-label>
+                    <input matInput formControlName="incidentStatus" placeholder="Incident Status" readonly="true">
+                    <mat-select matInput formControlName="incidentStatusDropDown" placeholder="Incident Status">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForIncidentStatus"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="status" *ngFor="let status of dropDownDetails.adminStatusList">
+                            {{ status}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('incidentStatus').touched && editIncidentForm.get('incidentStatus').hasError('required')">
+                    Select Incident Status
+                </mat-error>
+            </div>
+
+            <div *ngIf="userDetails.userRoleId == 4 && editIncidentForm.get('incidentStatus').value == 'Final' "
+                class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Incident Status</mat-label>
+                    <input matInput formControlName="incidentStatus" placeholder="Incident Status" readonly="true">
+                    <mat-select matInput formControlName="incidentStatusDropDown" placeholder="Incident Status">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForIncidentStatus"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="status" *ngFor="let status of dropDownDetails.adminStatusIssuedList">
+                            {{ status}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('incidentStatus').touched && editIncidentForm.get('incidentStatus').hasError('required')">
+                    Select Incident Status
+                </mat-error>
+            </div>
+
+            <div *ngIf="userDetails.userRoleId != 4" class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49"
+                fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width readOnly-field" appearance="outline">
+                    <mat-label>Incident Status</mat-label>
+
+                    <mat-select matInput formControlName="incidentStatus" placeholder="Incident Status">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForIncidentStatus"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="status" *ngFor="let status of dropDownDetails.statusList">
+                            {{ status}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('incidentStatus').touched && editIncidentForm.get('incidentStatus').hasError('required')">
+                    Select Incident Status
+                </mat-error>
+
+            </div>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline"
+                    [ngClass]="isViewmode || viewManagerMode || (userDetails.userRoleId == 4 && !isPendingStatus )? 'readOnly-field':''">
+                    <mat-label>Primary Non-Conformity</mat-label>
+                    <mat-select matInput formControlName="primaryNonConformity"
+                        (selectionChange)="onChangingPNC($event.value)" placeholder="Primary Non-Conformity">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForPrimaryNonConformity"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="primaryNonConformity"
+                            *ngFor="let primaryNonConformity of dropDownDetails.primaryNonConformityList">
+                            {{ primaryNonConformity | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('primaryNonConformity').touched && editIncidentForm.get('primaryNonConformity').hasError('required')">
+                    Select Primary Non-Conformity
+                </mat-error>
+            </div>
+
+            <span fxFlex></span>
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline"
+                    [ngClass]="!secondaryNonConformityList.length || isViewmode || viewManagerMode|| (userDetails.userRoleId == 4 && !isPendingStatus )  ? 'readOnly-field':''">
+                    <mat-label>Secondary Non-Conformity</mat-label>
+                    <mat-select matInput formControlName="secondaryNonConformity"
+                        placeholder="Secondary Non-Conformity">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForSecondaryNonConformity"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="secondaryNonConformity"
+                            *ngFor="let secondaryNonConformity of secondaryNonConformityList">
+                            {{ secondaryNonConformity | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('secondaryNonConformity').touched && editIncidentForm.get('secondaryNonConformity').hasError('required')">
+                    Select Secondary Non-Conformity
+                </mat-error>
+            </div>
+        </div>
+
+        <div *ngIf="editIncidentForm.contains('amount')  && editIncidentForm.contains('currency') " fxLayout="row wrap"
+            fxLayoutAlign="start" class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18"
+            [hidden]="editIncidentForm.get('primaryNonConformity').value == 'Cost Recovery' ? false:true">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline"
+                    [ngClass]="isViewmode || viewManagerMode|| (userDetails.userRoleId == 4 && !isPendingStatus ) ? 'readOnly-field':''">
+                    <mat-label>Currency</mat-label>
+                    <mat-select matInput formControlName="currency" placeholder="Currency">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForCurrency"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="currency" *ngFor="let currency of dropDownDetails.currencyList">
+                            {{ currency | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('currency').touched && editIncidentForm.get('currency').hasError('required')">
+                    Select Currency
+                </mat-error>
+            </div>
+
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input matInput formControlName="amount" placeholder="Amount"
+                        [readonly]="isViewmode || viewManagerMode || (userDetails.userRoleId == 4 && !isPendingStatus ) ? true : false"
+                        id="amount" (keydown)="onKeydown($event)">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('amount').touched && (editIncidentForm.get('amount').hasError('required'))">
+                    Amount is required!
+                </mat-error>
+            </div>
+
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start"
+            class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline"
+                    [ngClass]="isViewmode ||viewManagerMode|| (userDetails.userRoleId == 4 && !isPendingStatus ) ? 'readOnly-field':''">
+                    <mat-label>Technical Area</mat-label>
+                    <mat-select matInput formControlName="technicalArea" placeholder="Techinical Area">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForTechArea"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="list"
+                            *ngFor="let list of technicalArea | searchPipe : editIncidentForm.value.searchTextForTechArea">
+                            {{ list | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- <mat-error *ngIf="createIncidentForm.get('currency').touched && createIncidentForm.get('currency').hasError('required')">
+                        Select Currency
+                    </mat-error> -->
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline"
+                    [ngClass]="isViewmode || viewManagerMode  ? 'readOnly-field':''">
+                    <mat-label>Manager Name</mat-label>
+                    <mat-select matInput formControlName="managerName" placeholder=" Manager Name">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForManagerName"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="list.managerName"
+                            *ngFor="let list of managerNames | searchPipe : editIncidentForm.value.searchTextForManagerName ">
+                            {{ list.managerName | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('managerName').touched && editIncidentForm.get('managerName').hasError('required')">
+                    Select Manager Name
+                </mat-error>
+            </div>
+
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18">
+            <div class="pad-t-sm" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Details</mat-label>
+                    <textarea class="cus-text-area"
+                        [readonly]="isViewmode || viewManagerMode ||(userDetails.userRoleId == 4 && !isPendingStatus ) ? true :false"
+                        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5" maxlength='2000' minlength="50" matInput formControlName="details"
+                        placeholder="Details"></textarea>
+                </mat-form-field>
+                <p *ngIf="!(editIncidentForm.get('details').touched && editIncidentForm.get('details').hasError('required'))"
+                    class="file-size">
+                    Details required min 50 characters for a claim and max 2000 characters.</p>
+                <mat-error *ngIf="editIncidentForm.get('details').touched && (editIncidentForm.get('details').hasError('required') 
+                    || editIncidentForm.get('details').hasError('whitespace')) ">
+                    Details is required!
+                </mat-error>
+            </div>
+
+        </div>
+
+        <div *ngIf="editIncidentForm.get('managerComments').value !='' " fxLayout="row wrap" fxLayoutAlign="start"
+            class="
+gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18 ">
+            <div class="pad-t-sm" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Manager Comments</mat-label>
+                    <textarea class="cus-text-area" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" maxlength='2000' matInput
+                        formControlName="managerComments" readonly placeholder="Manager Comments"></textarea>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('managerComments').touched && (editIncidentForm.get('managerComments').hasError('required') || editIncidentForm.get('managerComments').hasError('whitespace'))">
+                    Manager Comments is required!
+                </mat-error>
+            </div>
+
+        </div>
+
+        <div *ngIf="editIncidentForm.get('supplierComments').value !='' " fxLayout="row wrap" fxLayoutAlign="start"
+            class="
+        gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18 ">
+            <div class="pad-t-sm" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Comments</mat-label>
+                    <textarea class="cus-text-area" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" maxlength='2000' matInput
+                        formControlName="supplierComments" readonly placeholder="Supplier Comments"></textarea>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="editIncidentForm.get('supplierComments').touched && (editIncidentForm.get('supplierComments').hasError('required') || editIncidentForm.get('supplierComments').hasError('whitespace'))">
+                    Supplier Comments is required!
+                </mat-error>
+            </div>
+
+        </div>
+
+
+        <div fxLayout="row wrap" fxLayoutAlign="start" class=" gene-form-wizard cus-jus-center trade-crypto  ">
+            <div class="pad-t-sm mt-18" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Issued Date</mat-label>
+                    <input matInput readonly formControlName="issuedDate" placeholder="Issued Date" readonly=true>
+                </mat-form-field>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm mt-18" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Incident Originator </mat-label>
+                    <input matInput readonly formControlName="originator" placeholder="Issued Date">
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start" class=" gene-form-wizard cus-jus-center trade-crypto mt-18">
+            <div class="pad-t-sm " fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <div style="height: 20px;">
+                        <button mat-button [ngClass]="!isViewmode && !viewManagerMode ? 'cus-fileBtn': 'btnclor'"
+                            (click)="!isAdding && !fileUploadDisable && !viewManagerMode && !isViewmode ? fileInput.click() : ''">File
+                            Upload
+                            <mat-icon matSuffix style="color: white;margin-left: 5px;" class="cursor-pointer"
+                                *ngIf="!isShowEditOptionsAndIssuedDate && !isPendingStatus"
+                                [matTooltip]="!isAdding  ? 'Select File' : ''">
+                                cloud_upload</mat-icon>
+                        </button>
+                        <input matInput formControlName="file" readonly placeholder="File Chosen" hidden="true">
+                        <input type="file" class="d-none" (change)="onSelectingFile($event)" multiple #fileInput
+                            accept=".pdf" (click)="$any($event.target).value=null">
+                    </div>
+                    <div *ngFor="let files of allFiles;let i=index" style="height:27px;position: relative;top:15px">
+                        <input matInput readonly [value]="files">
+                        <button class="btnClose" matSuffix mat-icon-button aria-label="Clear"
+                            *ngIf="!isViewmode && !viewManagerMode && !fileUploadDisable && files!='' && !files.includes('Disputed_')"
+                            (click)="onDeletingFile(i,editIncidentForm,files)">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button class="btnDownload" color="primary"
+                            *ngIf="isShowEditOptionsAndIssuedDate || isPendingStatus || files.includes('Disputed_')"
+                            mat-icon-button matTooltip="Click to download {{files}}">
+                            <mat-icon (click)="downLoadCertificate(editIncidentForm,files)">
+                                cloud_download
+                            </mat-icon>
+                        </button>
+                    </div>
+                </mat-form-field>
+
+                <p *ngIf="!(editIncidentForm.get('file').hasError('incorrect') && allFiles.length == 0)"
+                    class="file-size"> Max file size 2MB for Each File and Special characters not allowed in File Name.
+                </p>
+                <mat-error *ngIf="editIncidentForm.get('file').hasError('incorrect') && allFiles.length == 0">
+                    File is required.
+                </mat-error>
+
+            </div>
+        </div>
+    </form>
+    <div class="cus-mt" *ngIf="userDetails.userRoleId == 1 && !isShowEditOptionsAndIssuedDate">
+        <div class="button-row justify-center">
+            <button mat-raised-button color="primary" *ngIf="!isViewmode" [disabled]="isLoading"
+                (click)="submitForm('Draft')">Save
+            </button>
+            <button mat-raised-button color="primary" class="cus-btn-margin" [disabled]="isLoading" *ngIf="!isViewmode"
+                (click)="submitForm('Pending')">Submit
+            </button>
+            <button mat-raised-button color="primary" class="cus-btn-margin" [disabled]="isLoading" *ngIf="!isViewmode"
+                (click)="deleteIncidentClaim()">Delete</button>
+            <button mat-raised-button color="primary" class="cus-btn-margin" [disabled]="isLoading" *ngIf="!isViewmode"
+                (click)="closePopup()">Exit</button>
+        </div>
+    </div>
+    <div class="cus-mt" *ngIf="userDetails.userRoleId == 2 && isPendingStatus && (!viewManagerMode || managerViewViaLink)">
+        <div class="button-row justify-center">
+            <button mat-raised-button color="primary" [disabled]="isLoading"
+                (click)="claimOperations('Issued')">{{isLoading
+                && isLoading.Issued ? 'Approving..' : 'Approve'}}
+            </button>
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="claimOperations('Rejected')">{{isLoading && isLoading.Rejected ? 'Rejecting..' :
+                'Reject'}}</button>
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="claimOperations('Cancelled')">{{isLoading && isLoading.Cancelled ? 'Cancelling..' :
+                'Cancel'}}</button>
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="closePopup()">Exit</button>
+        </div>
+    </div>
+    <div class="cus-mt" *ngIf="userDetails.userRoleId == 2 && (viewManagerMode && !managerViewViaLink )" >
+        <div class="button-row justify-center">
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="closePopup()">Exit</button>
+        </div>
+    </div>
+    <div class="cus-mt" *ngIf="userDetails.userRoleId == 2 && isDisputedStatus">
+        <div class="button-row justify-center">
+            <button mat-raised-button color="primary" [disabled]="isLoading"
+                (click)="claimOperations('Issued')">{{isLoading
+                && isLoading.Issued ? 'Approving..' : 'Approve'}}
+            </button>
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="claimOperations('Rejected')">{{isLoading && isLoading.Rejected ? 'Rejecting..' :
+                'Reject'}}</button>
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="closePopup()">Exit</button>
+        </div>
+    </div>
+    <div class="cus-mt" *ngIf="userDetails.userRoleId == 4">
+        <div class="button-row justify-center">
+            <button mat-raised-button color="primary" class="cus-btn-margin" [disabled]="isLoading"
+                (click)="claimOperations(editIncidentForm.get('incidentStatusDropDown').value)">Submit</button>
+            <button mat-raised-button color="primary" class="cus-btn-margin" [disabled]="isLoading"
+                (click)="deleteIncidentClaim()">Delete</button>
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="closePopup()">Exit</button>
+        </div>
+    </div>
+    <div class="cus-mt" *ngIf="isShowEditOptionsAndIssuedDate && !isDisputedStatus && isViewmode ">
+        <div class="button-row justify-center">
+            <button mat-raised-button color="primary" [disabled]="isLoading" class="cus-btn-margin"
+                (click)="closePopup()">Exit</button>
+        </div>
+    </div>
+</div>

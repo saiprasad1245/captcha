@@ -1,0 +1,529 @@
+<div *ngIf="popupDetails.action == 'created'">
+    <div class="justify-center">
+        <mat-icon class="cus-success-icon"> check_circle </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Created Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'delete'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Deleted Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'update'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Saved/Updated Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<!-- <div *ngIf="popupDetails.action == 'Issued'">
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 16px;">
+            Are you sure want to approve?
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" (click)="closePopup('proceed')">
+            Yes
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div> -->
+
+<div *ngIf="popupDetails.action == 'clear'">
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 16px;">
+            Are you sure you want to clear data?
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" (click)="closePopup('clear')">
+            Yes
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'exit'">
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 16px;">
+            Changes will not be saved. Are you sure you want to exit?
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" (click)="closePopup('exit')">
+            Exit
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div
+    *ngIf="popupDetails.action == 'error' || popupDetails.action == 'fileUploadInfo'  || popupDetails.action == 'emailValidation'">
+    <div class="justify-center">
+        <mat-icon class="cus-error-icon"> error </mat-icon>
+        <h2 mat-dialog-title class="error" style="font-size: 15px;">
+            {{popupDetails.message}}
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('error')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'save' || popupDetails.action == 'submit'" class="confirmation-popup">
+    <div class="justify-center">
+        <h2 mat-dialog-title *ngIf="popupDetails.action == 'save' || popupDetails.action == 'submit'">
+            Please ensure all information is correct.
+        </h2>
+    </div>
+    <div class="button-row justify-center">
+        <button *ngIf="popupDetails.action == 'save'" mat-raised-button color="primary" (click)="closePopup('save')">
+            Save
+        </button>
+        <button *ngIf="popupDetails.action == 'submit'" mat-raised-button color="primary"
+            (click)="closePopup('submit')">
+            Submit
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'acceptFile'" class="confirmation-popup">
+    <div class="justify-center">
+        <h2 mat-dialog-title>
+            Are you sure want to Accept the Claim?
+        </h2>
+    </div>
+    <div class="button-row justify-center">
+        <button mat-raised-button color="primary" (click)="closePopup('acceptFile')">
+            Ok
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'adminClaim'" class="confirmation-popup">
+    <div class="justify-center">
+        <h2 mat-dialog-title>
+            Are you sure want to Save Details ?
+        </h2>
+    </div>
+    <div class="button-row justify-center">
+        <button mat-raised-button color="primary" (click)="closePopup('adminClaim')">
+            Ok
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'deleteConfirmation'" class="confirmation-popup">
+    <div class="justify-center">
+        <h2 mat-dialog-title>
+            Are you sure want to delete this incident claim?
+        </h2>
+    </div>
+    <div class="button-row justify-center">
+        <button mat-raised-button color="primary" (click)="closePopup('delete')">
+            Continue
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<!-- <div *ngIf="popupDetails.action == 'Cancelled'" class="confirmation-popup">
+    <div class="justify-center">
+        <h2 mat-dialog-title>
+            Are you sure want to change the status of this claim to cancelled?
+        </h2>
+    </div>
+    <div class="button-row justify-center">
+        <button mat-raised-button color="primary" (click)="closePopup('cancel')">
+            Continue
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div> -->
+
+<div *ngIf="popupDetails.action == 'deleteFileConfirmation'" class="confirmation-popup">
+    <div class="justify-center">
+        <h2 mat-dialog-title>
+            Are you sure want to delete the selected file?
+        </h2>
+    </div>
+    <div class="button-row justify-center">
+        <button mat-raised-button color="primary" (click)="closePopup('deleteFile')">
+            Ok
+        </button>
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'dispute' || popupDetails.action == 'Rejected' || popupDetails.action == 'Cancelled' || popupDetails.action == 'Issued'"
+    class="confirmation-popup">
+    <div class="pad-t-sm" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+        <form [formGroup]="disputeForm">
+            <div fxLayout="row wrap" style="margin-bottom: 25px;" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        cus-row-height
+      ">
+                <!-- <div class="pad-t-sm label-column justify-center" fxFlex.gt-sm="99" fxFlex.gt-md="99" fxFlex.gt-xs="99" fxFlex="100">
+                <h2 mat-dialog-title>Supplier Comments :</h2>
+            </div> -->
+                <div class="pad-t-sm" fxFlex.gt-sm="99" fxFlex.gt-md="99" fxFlex.gt-xs="99" fxFlex="100">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>{{popupDetails.action == 'dispute' ? 'Supplier Comments' : 'Comments'}}</mat-label>
+                        <textarea matInput formControlName="reason" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" maxlength='2000'
+                            placeholder="Enter Reason"></textarea>
+                    </mat-form-field>
+                    <mat-error style="font-size: 12px;"
+                        *ngIf="disputeForm.get('reason').touched && (disputeForm.get('reason').hasError('required') || disputeForm.get('reason').hasError('whitespace'))">
+                        Comments is Required!
+                    </mat-error>
+                </div>
+                <div *ngIf="popupDetails.action == 'dispute'" class="pad-t-sm mt-18" fxFlex.gt-sm="99" fxFlex.gt-md="99"
+                    fxFlex.gt-xs="99" fxFlex="100">
+                    <!-- <mat-form-field class="full-width" appearance="outline">
+                        <input matInput formControlName="file" readonly placeholder="No File Chosen">
+                        <mat-icon matSuffix color="primary" class="cursor-pointer" (click)="fileInput.click()"
+                            matTooltip="Select File">
+                            cloud_upload</mat-icon>
+                        <input type="file" class="d-none" (change)="onSelectingFile($event)" #fileInput accept=".pdf">
+                    </mat-form-field> -->
+                    <mat-form-field class="full-width" appearance="outline">
+                        <div style="height: 20px;">
+                            <input matInput formControlName="file" readonly placeholder="Attachments">
+                            <mat-icon matSuffix color="primary" class="cursor-pointer cus-file-btn"
+                                (click)="fileInput.click()" matTooltip="Select File">
+                                cloud_upload</mat-icon>
+                            <input type="file" class="d-none" (change)="onSelectingFile($event)" multiple #fileInput
+                                accept=".pdf" (click)="$any($event.target).value=null">
+                        </div>
+                        <div *ngFor="let files of fileList;let i=index" style="height:27px;position: relative;top:15px">
+                            <input matInput readonly [value]="files">
+                            <button class="btnClose" *ngIf="isFileSelected" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="removeItem(i)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+
+                        </div>
+                    </mat-form-field>
+                    <p *ngIf="!(disputeForm.get('file').touched && disputeForm.get('file').hasError('required'))"
+                        class="file-size">Max file size 2MB for Each File and Special characters not allowed in File
+                        Name. </p>
+                    <mat-error *ngIf="disputeForm.get('file').touched && disputeForm.get('file').hasError('required')">
+                        File is required
+                    </mat-error>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="button-row justify-center mar-t-5">
+            <button mat-raised-button color="primary" (click)="onSubmittingForm('submit')">
+                Continue
+            </button>
+            <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('')">
+                Back
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="popupDetails.action == 'claimOperations'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            {{getMessage(popupDetails.event)}}
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'successFullyRejected'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Rejected Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+
+<div *ngIf="popupDetails.action == 'BulkUpload'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            File Imported Successfully.
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'cancelledSuccessfully'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Cancelled Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'Disputed'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Disputed Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'Closed'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Closed Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'Final'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Final Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'Draft'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim status changed to Draft Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'Accept'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Accepted Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+<div *ngIf="popupDetails.action == 'Dispute'">
+    <div class="justify-center">
+        <mat-icon class="cus-modal-info-icon"> info </mat-icon>
+    </div>
+    <div class="justify-center">
+        <h2 mat-dialog-title style="font-size: 13px;">
+            Incident Claim Disputed Successfully
+        </h2>
+    </div>
+    <div class="button-row justify-center mar-t-5">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('close')">
+            OK
+        </button>
+    </div>
+</div>
+
+
+<div *ngIf="popupDetails.action =='AddEmail'">
+    <form [formGroup]="createEmailForm">
+    
+            <mat-icon matPreffix class="cus-close" (click) ="closePopup('')">close</mat-icon>
+        
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> stellantis UserEmail 1</mat-label>
+                    <input matInput formControlName="UserEmail1" placeholder="Email1" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@((stellantis\.com)|(external.stellantis\.com))$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createEmailForm.get('UserEmail1').touched && createEmailForm.get('UserEmail1').hasError('pattern')">
+                    Invalid Email.
+                </mat-error>
+            </div>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline" style="margin-left:10px">
+                    <mat-label>stellantis UserEmail 2</mat-label>
+                    <input matInput formControlName="UserEmail2" placeholder="Email2" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@((stellantis\.com)|(external.stellantis\.com))$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createEmailForm.get('UserEmail2').touched && createEmailForm.get('UserEmail2').hasError('pattern')">
+                    Invalid Email.
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>stellantis UserEmail 3</mat-label>
+                    <input matInput formControlName="UserEmail3" placeholder="Email3" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@((stellantis\.com)|(external.stellantis\.com))$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createEmailForm.get('UserEmail3').touched && createEmailForm.get('UserEmail3').hasError('pattern')">
+                    Invalid Email.
+                </mat-error>
+            </div>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline" style="margin-left:10px">
+                    <mat-label>stellantis UserEmail 4</mat-label>
+                    <input matInput formControlName="UserEmail4" placeholder="Email4" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@((stellantis\.com)|(external.stellantis\.com))$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createEmailForm.get('UserEmail4').touched && createEmailForm.get('UserEmail4').hasError('pattern')">
+                    Invalid Email.
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>stellantis UserEmail 5</mat-label>
+                    <input matInput formControlName="UserEmail5" placeholder="Email5" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@((stellantis\.com)|(external.stellantis\.com))$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createEmailForm.get('UserEmail5').touched && createEmailForm.get('UserEmail5').hasError('pattern')">
+                    Invalid Email.
+                </mat-error>
+            </div>
+
+            <div class="button-row justify-center cus-email">
+                <button mat-raised-button color="primary" (click)="submitEmailForm(createEmailForm)">
+                   Save
+                </button>
+                <!-- <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup('Cancel')">
+                    Cancel
+                </button> -->
+            </div>
+        </div>
+    </form>
+</div>

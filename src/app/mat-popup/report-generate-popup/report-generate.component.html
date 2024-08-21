@@ -1,0 +1,50 @@
+<!-- <div style="width:900px ;"> -->
+<div style="display: block; width: 650px">
+    <p style="text-align:center"><span style="font-weight:bold;">{{reportHeader}}</span></p>
+</div>
+
+<div class="cus-chart" id="report-chart">
+    <canvas id="canvas">{{ chart }}</canvas>
+</div>
+
+<br>
+<br>
+<div class="pad-t-sm" style="text-align: end">
+    <span class="space-flex"></span>
+    <div class="button-row justify-center">
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <form [formGroup]="categoryForm" style="position: relative;top:5px;">
+                <mat-form-field class="full-width cus-dropdown" appearance="outline">
+                    <mat-label>Calander Year</mat-label>
+                    <mat-select matInput placeholder="Calander Year" formControlName="year"
+                        (selectionChange)="getChartData()">
+                        <mat-option [value]="year" *ngFor="let year of yearList">
+                            {{ year }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="full-width cus-dropdown" appearance="outline">
+                    <mat-label>Report Categories</mat-label>
+                    <mat-select matInput placeholder="Report Categories" formControlName="category"
+                        (selectionChange)="getChartData()">
+                        <mat-option [value]="list" *ngFor="let list of Categories">
+                            {{ list | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+        <button mat-raised-button color="primary" (click)="closePopup()" class="cus-btn-margin">
+            Back
+        </button><span style="width: 10px"></span>
+
+        <button mat-button class="cus-mat-button" color="primary" (click)="saveAsPDF()" >Extract</button>
+
+    </div>
+</div>
+<!-- </div> -->

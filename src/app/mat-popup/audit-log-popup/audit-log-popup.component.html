@@ -1,0 +1,270 @@
+<div class="log-popup-modal">
+    <h1 style="margin-left: 42%;">Activity Log</h1>
+    <h1 class="log-header"> Suprel Number - {{popupDetails.suprelNo}}</h1>
+    <cdk-virtual-scroll-viewport class="wrapper " itemSize="48">
+        <div class="cus-log-spinner" *ngIf="isLoading">
+            <mat-spinner style="margin-top: 50px;" [diameter]="50"></mat-spinner>
+        </div>
+        <div class="cus-log-spinner && !isLoading" style="color: red;margin-top: 100px;" *ngIf="isShowError">
+            Something went wrong.please exit try again.
+        </div>
+        <ul class="sessions">
+            <li *cdkVirtualFor="let log of auditLogList;let i = index">
+                <div *ngIf="i ==0">
+                    <div class="time"><span>{{log.userTid | uppercase}}</span><span class="cus-time">{{log.dateAndTime |
+                            date: 'MM/dd/yyyy HH:mm a' }}</span></div>
+                    <div class="cus-activity" *ngIf="log.supplierManufCode">
+                         Added Claim with <span class="cus-highlight"> Supplier Code :
+                        {{log.supplierManufCode}}</span>
+                    </div>        
+                    <div class="cus-activity" *ngIf="log.primaryNonConformity">
+                        Added Claim with <span class="cus-highlight"> Primary Non Conformity :
+                            {{log.primaryNonConformity}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.secondaryNonConformity">
+                        Added Claim with <span class="cus-highlight"> Secondary Non Conformity :
+                            {{log.secondaryNonConformity}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.technicalArea">
+                        Added Claim with <span class="cus-highlight"> Technical Area:
+                            {{log.technicalArea}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.originatorName">
+                        Added Claim with <span class="cus-highlight"> Originator Name :
+                            {{log.originatorName}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.managerName">
+                        Added Claim with <span class="cus-highlight"> Manager Name :
+                            {{log.managerName}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.suprelStatus">
+                        Added Claim with <span class="cus-highlight"> Suprel Status :
+                            {{log.suprelStatus}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.currency">
+                        Added Claim with <span class="cus-highlight"> Currency :
+                            {{log.currency}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.amount">
+                        Added Claim with <span class="cus-highlight"> Amount :
+                            {{log.amount}}</span>
+                    </div>
+                   
+                    
+                    <div class="cus-activity" *ngIf="log.details">
+                        Added Claim with <span class="cus-highlight"> Details :
+                            {{log.details}}</span>
+                    </div>
+                   
+
+                   
+
+                    <div class="cus-activity" *ngIf="log.managerComments">
+                        Added Claim with <span class="cus-highlight"> Manager Comments :
+                            {{log.managerComments}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.supplierComments">
+                        Added Claim with <span class="cus-highlight"> Supplier Comments :
+                            {{log.supplierComments}}</span>
+                    </div>
+
+                    
+                    <div class="cus-activity" *ngIf="log.supplierEmail1">
+                        Added Claim with <span class="cus-highlight"> Supplier Email1 :
+                            {{log.supplierEmail1}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.supplierEmail2">
+                        Added Claim with <span class="cus-highlight"> Supplier Email2 :
+                            {{log.supplierEmail2}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.supplierEmail3">
+                        Added Claim with <span class="cus-highlight"> Supplier Email3 :
+                            {{log.supplierEmail3}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.supplierEmail4">
+                        Added Claim with <span class="cus-highlight"> Supplier Email4 :
+                            {{log.supplierEmail4}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.supplierEmail5">
+                        Added Claim with <span class="cus-highlight"> Supplier Email5 :
+                            {{log.supplierEmail5}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.userEmail1">
+                        Added Claim with <span class="cus-highlight"> User Email1 :
+                            {{log.userEmail1}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.userEmail2">
+                        Added Claim with <span class="cus-highlight"> User Email2 :
+                            {{log.userEmail2}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.userEmail3">
+                        Added Claim with <span class="cus-highlight"> User Email3 :
+                            {{log.userEmail3}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.userEmail4">
+                        Added Claim with <span class="cus-highlight"> User Email4 :
+                            {{log.userEmail4}}</span>
+                    </div>
+                    <div class="cus-activity" *ngIf="log.userEmail5">
+                        Added Claim with <span class="cus-highlight"> User Email5 :
+                            {{log.userEmail5}}</span>
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.attachmentNames">
+                        Added Claim with <span class="cus-highlight"> File Attachments :
+                            {{log.attachmentNames}}</span>
+                    </div>
+                </div>
+                <div *ngIf="i !=0">
+                    <div class="time"><span>{{log.userTid | uppercase}}</span><span class="cus-time">{{log.dateAndTime |
+                            date: 'MM/dd/yyyy H:mm a'}}</span></div>
+
+                            <div class="cus-activity"
+                            *ngIf="log.supplierManufCode && auditLogList[i-1].supplierManufCode !=log.supplierManufCode">
+                            Updated <span class="cus-highlight">Supplier Code </span> : <span class="cus-highlight"
+                                *ngIf="auditLogList[i-1].supplierManufCode">{{auditLogList[i-1].supplierManufCode}}</span>
+                            <span class="to-highlight" *ngIf="auditLogList[i-1].supplierManufCode"> to </span> <span
+                                class="cus-highlight">{{log.supplierManufCode}}</span>
+    
+                        </div>
+                    <div class="cus-activity"
+                        *ngIf="log.primaryNonConformity && auditLogList[i-1].primaryNonConformity !=log.primaryNonConformity">
+                        Updated <span class="cus-highlight">Primary Non Conformity </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].primaryNonConformity">{{auditLogList[i-1].primaryNonConformity}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].primaryNonConformity"> to </span> <span
+                            class="cus-highlight">{{log.primaryNonConformity}}</span>
+
+                    </div>
+                    <div class="cus-activity"
+                        *ngIf="log.secondaryNonConformity && auditLogList[i-1].secondaryNonConformity !=log.secondaryNonConformity">
+                        Updated <span class="cus-highlight">Secondary Non Conformity </span> : <span
+                            class="cus-highlight"
+                            *ngIf="auditLogList[i-1].secondaryNonConformity">{{auditLogList[i-1].secondaryNonConformity}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].secondaryNonConformity"> to </span> <span
+                            class="cus-highlight">{{log.secondaryNonConformity}}</span>
+
+                    </div>
+
+                    <div class="cus-activity" *ngIf="auditLogList[i-1].currency !=log.currency">
+                        Updated <span class="cus-highlight">Currency </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].currency">{{auditLogList[i-1].currency}}</span>
+                        <span *ngIf="auditLogList[i-1].currency">  </span> <span class="to-highlight">  to  </span> <span
+                            class="cus-highlight">{{log.currency}}</span>
+
+                    </div>
+
+                    <div class="cus-activity" *ngIf="auditLogList[i-1].amount !=log.amount">
+                        Updated <span class="cus-highlight">Amount </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].amount">{{auditLogList[i-1].amount}}</span>
+                        <span *ngIf="auditLogList[i-1].amount">  </span> <span class="to-highlight">  to  </span> <span
+                            class="cus-highlight">{{log.amount}}</span>
+
+                    </div>
+                    
+                    <div class="cus-activity"
+                        *ngIf="log.technicalArea && auditLogList[i-1].technicalArea !=log.technicalArea">
+                        Updated <span class="cus-highlight">Technical Area </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].technicalArea">{{auditLogList[i-1].technicalArea}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].technicalArea"> to </span> <span
+                            class="cus-highlight">{{log.technicalArea}}</span>
+
+                    </div>
+                   
+                    
+
+                    <div class="cus-activity"
+                        *ngIf="log.originatorName && auditLogList[i-1].originatorName !=log.originatorName">
+                        Updated <span class="cus-highlight">Originator Name </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].originatorName">{{auditLogList[i-1].originatorName}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].originatorName"> to </span> <span
+                            class="cus-highlight">{{log.originatorName}}</span>
+
+                    </div>
+
+                    <div class="cus-activity"
+                        *ngIf="log.managerName && auditLogList[i-1].managerName !=log.managerName">
+                        Updated <span class="cus-highlight">Manager Name </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].managerName">{{auditLogList[i-1].managerName}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].managerName"> to </span> <span
+                            class="cus-highlight">{{log.managerName}}</span>
+
+                    </div>
+
+                    <div class="cus-activity" *ngIf="log.details && auditLogList[i-1].details !=log.details">
+                        Updated <span class="cus-highlight">Details </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].details">{{auditLogList[i-1].details}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].details"> to </span> <span
+                            class="cus-highlight">{{log.details}}</span>
+
+                    </div>
+
+                    <div class="cus-activity"
+                        *ngIf="log.managerComments && auditLogList[i-1].managerComments !=log.managerComments">
+                        Added <span class="cus-highlight">Manager Comments </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].managerComments">{{auditLogList[i-1].managerComments}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].managerComments"> to </span> <span
+                            class="cus-highlight">{{log.managerComments}}</span>
+
+                    </div>
+
+                    <div class="cus-activity"
+                    *ngIf="!log.managerComments && auditLogList[i-1].managerComments !=log.managerComments">
+                    Updated <span class="cus-highlight">Manager Comments </span> : <span class="cus-highlight"
+                        *ngIf="auditLogList[i-1].managerComments">{{auditLogList[i-1].managerComments}}</span>
+                    <span class="to-highlight" *ngIf="auditLogList[i-1].managerComments"> to </span> <span
+                        class="cus-highlight">{{log.managerComments}}</span>
+
+                </div>
+
+                    <div class="cus-activity"
+                        *ngIf="log.supplierComments && auditLogList[i-1].supplierComments !=log.supplierComments">
+                        Added <span class="cus-highlight">Supplier Comments </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].supplierComments">{{auditLogList[i-1].supplierComments}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].supplierComments"> to </span> <span
+                            class="cus-highlight">{{log.supplierComments}}</span>
+
+                    </div>
+
+                    <div class="cus-activity"
+                        *ngIf="log.suprelStatus && auditLogList[i-1].suprelStatus !=log.suprelStatus">
+                        Updated <span class="cus-highlight">Suprel Status </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].suprelStatus">{{auditLogList[i-1].suprelStatus}}</span>
+                        <span class="to-highlight" *ngIf="auditLogList[i-1].suprelStatus"> to </span> <span
+                            class="cus-highlight">{{log.suprelStatus}}</span>
+
+                    </div>
+                    <div class="cus-activity"
+                        *ngIf=" log.fileName != null && log.fileName.length>0 && auditLogList[i-1].attachmentNames !=log.attachmentNames && log.suprelStatus =='Disputed'" >
+                        Added Disputed <span class="cus-highlight">File Attachments </span> : 
+                        <span *ngFor=" let name of log.fileName ;let i=index"
+                        class="cus-highlight">{{name +', '}}</span>
+                    </div>
+
+                    <div class="cus-activity"
+                        *ngIf=" auditLogList[i-1].attachmentNames !=log.attachmentNames" >
+                        Updated <span class="cus-highlight">File Attachments </span> : <span class="cus-highlight"
+                            *ngIf="auditLogList[i-1].attachmentNames">{{auditLogList[i-1].attachmentNames}}</span>
+                        <span *ngIf="auditLogList[i-1].attachmentNames"> </span> <span class="to-highlight">  to  </span><span
+                            class="cus-highlight">{{log.attachmentNames}}</span>
+                    </div>
+
+                   
+
+                </div>
+
+            </li>
+        </ul>
+    </cdk-virtual-scroll-viewport>
+    <div class="button-row justify-center" style="margin-top: 10px;">
+        <button mat-raised-button color="primary" class="cus-btn-margin" (click)="closePopup()">
+            Exit
+        </button>
+    </div>
+</div>

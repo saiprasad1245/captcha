@@ -1,0 +1,90 @@
+.cus-btn-margin {
+    margin-left: 10px
+}
+
+.confirmation-popup {
+    .file-size {
+        font-size: 9px;
+        margin-top: -3px;
+        color: grey;
+    }
+}
+mat-error {
+    font-size: 11px;
+    position: relative;
+    bottom: 20px;
+}
+.cus-file-btn {
+    position: relative;
+    left: 100%;
+    bottom: 23px;
+}
+
+.btnClose {
+    position: relative;
+    bottom: 29px;
+    left: 97%;
+    color: gray;
+    background-color: none;
+}
+
+.confirmation-popup ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0px;
+}
+
+.mar-t-5 {
+    margin-top: 5px;
+}
+.cus-email{
+    position: relative;
+    left:40px;
+    bottom: 15px;
+}
+.cus-close{
+    float: right;
+    position: relative;
+    bottom: 30px;
+    background-color: #3f51b5;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.cus-success-icon {
+    // position: relative;
+    // bottom: 18px;
+    font-size: 40px;
+    // margin-right: 20px;
+    margin-bottom: 20px;
+    color: green;
+}
+
+.cus-error-icon {
+    position: relative;
+    bottom: 18px;
+    font-size: 40px;
+    margin-right: 20px;
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+.cus-height {
+    margin-top: 68vh;
+}
+
+.cus-modal-info-icon {
+    font-size: 32px;
+    color: #3f51b5;
+    height: 32px;
+    width: 32px;
+}

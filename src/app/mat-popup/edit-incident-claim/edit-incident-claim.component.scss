@@ -1,0 +1,143 @@
+.edit-incident-popup {
+    .cus-btn-margin {
+        margin-left: 10px;
+        
+    }
+}
+.loader{
+    pointer-events: none;
+}
+
+
+.edit-incident-popup ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0px;
+}
+
+.edit-incident-popup ::ng-deep .mat-error {
+    font-size: 11px;
+    position: relative;
+}
+
+.edit-incident-popup mat-label {
+    font-size: 14px;
+}
+
+.edit-incident-popup ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0px;
+}
+
+.edit-incident-popup ::ng-deep .mat-error {
+    font-size: 11px;
+    position: relative;
+}
+
+.edit-incident-popup mat-label {
+    font-size: 14px;
+}
+
+.readOnly-field {
+    //cursor: not-allowed;
+    pointer-events: none;
+}
+
+.wrapper {
+    pointer-events: none;
+}
+
+.edit-incident-popup {
+    .cus-mat-spinner {
+        top: 46vh;
+        position: absolute;
+        left: 48vw;
+    }
+
+    .file-size {
+        font-size: 9px;
+        margin-top: -3px;
+        color: grey;
+    }
+
+    .cus-btn-margin {
+        margin-left: 10px
+    }
+
+    .cus-mt {
+        margin-top: 23px;
+    }
+}
+
+.btnClose {
+    position: relative;
+    bottom: 30px;
+    left: 90%;
+    color: gray;
+    background-color: none;
+}
+
+.btnCloud {
+    left: 255px;
+    position: relative;
+    bottom: 20px;
+}
+
+.scrollbar {
+    margin: 4px, 4px;
+    padding: 4px;
+    width: 700px;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+@media only screen and (min-width: 1050px) {
+    .scrollbar {
+        margin: 4px, 4px;
+        padding: 4px;
+        width: 700px;
+        height: 650px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        
+    }
+}
+@media only screen and (max-width: 1297px)  {
+    .scrollbar {
+        margin: 4px, 4px;
+        padding: 4px;
+        width: 700px;
+        height: 550px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        
+    }
+}
+
+.btnclor {
+    background-color: blue;
+    color: white;
+    position: relative;
+    width: 103%;
+    height: 40px;
+    text-align: center;
+    bottom: 10px;
+    right: 9px;
+    padding-right: 20px;
+    //margin-bottom: 10px;
+}
+.cus-fileBtn{
+    background-color: blue;
+    color: white;
+    position: relative;
+    width: 106%;
+    height: 40px;
+    text-align: center;
+    bottom: 10px;
+    right: 9px;
+    padding-right: 20px;
+}
+
+.btnDownload {
+    position: relative;
+    left: 90%;
+    bottom: 30px;
+}

@@ -1,0 +1,153 @@
+@mixin tablet-and-up {
+    @media screen and (min-width: 769px) {
+        @content;
+    }
+}
+
+@mixin mobile-and-up {
+    @media screen and (min-width: 601px) {
+        @content;
+    }
+}
+
+@mixin tablet-and-down {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin mobile-only {
+    @media screen and (max-width: 600px) {
+        @content;
+    }
+}
+
+ul,
+li {
+    list-style: none;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    background: linear-gradient(45deg, #209cff, #68e0cf);
+    padding: 3rem 0;
+}
+
+.wrapper {
+    // background: #eaf6ff;
+    height: 66vh;
+    overflow: auto;
+    // padding: 1rem 2rem 1rem 2rem;
+    border-radius: 15px;
+}
+
+h1 {
+    font-size: 1.1rem;
+    font-family: sans-serif;
+}
+
+.sessions {
+    margin-top: 0px;
+    border-radius: 12px;
+    position: relative;
+}
+.empty{
+    display: none;
+}
+
+li {
+    // padding-bottom: 1.5rem;
+    padding-bottom: 1.1rem;
+    // border-left: 1px solid #abaaed;
+    border-left: 1px solid #bd2a61;
+    position: relative;
+    padding-left: 20px;
+    margin-left: 10px;
+    &:last-child {
+        border: 0px;
+        padding-bottom: 0;
+    }
+    &:before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        background: white;
+        // border: 1px solid #4e5ed3;
+        border: 1px solid #f31384;
+        // box-shadow: 3px 3px 0px #bab5f8;
+        box-shadow: 3px 3px 0px #f8b5b5;
+        border-radius: 50%;
+        position: absolute;
+        left: -10px;
+        top: 0px;
+    }
+}
+
+.log-header {
+    color: #3f3e40;
+    font-weight: bold;
+}
+
+.time {
+    // color: #2a2839;
+    color: #7a7a7a;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    // @include mobile-and-up {
+    //     font-size: .9rem;
+    // }
+    // @include mobile-only {
+    //     margin-bottom: .3rem;
+    //     font-size: 0.85rem;
+    // }
+}
+
+.cus-time {
+    font-size: 12px;
+    margin-left: 5px;
+    font-weight: 100;
+}
+
+p {
+    color: #4f4f4f;
+    font-family: sans-serif;
+    line-height: 1.5;
+    margin-top: 0.4rem;
+    @include mobile-only {
+        font-size: .9rem;
+    }
+}
+
+.cus-activity {
+    font-size: 13px;
+    margin-top: 14px;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.cus-log-spinner {
+    height: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.cus-highlight {
+    font-weight: 400;
+    color: black;
+}
+
+.to-highlight {
+    font-weight: 400;
+    font-weight: bold;
+    color: red;
+}
+
+.log-popup-modal {
+    ::ng-deep .cdk-virtual-scroll-content-wrapper {
+padding:1rem 1.5rem 1rem 1.5rem !important
+    }
+}

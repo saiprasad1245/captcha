@@ -1,0 +1,622 @@
+<div class="create-incident-popup scrollbar custom-scroll"
+    [style.pointer-events]="isLoadingSupplierCodeDetails || isLoading ? 'none' : ''"
+    style="font-family: 'Roboto-Medium';">
+    <!-- <div class="word">LOADING...</div> -->
+    <mat-spinner *ngIf="isLoadingSupplierCodeDetails || isLoading" class="cus-mat-spinner" [diameter]="50">
+    </mat-spinner>
+
+    <div class="justify-center">
+        <h2 mat-dialog-title style="margin-bottom:0px">New Incident Claim Creation</h2>
+
+    </div>
+    <form [formGroup]="createIncidentForm" style="display: block !important"
+        [ngClass]="isLoading || isLoadingSupplierCodeDetails ? 'loader':''">
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Code</mat-label>
+                    <input matInput (keyup)="onEnteringSupplierCode($event)" (keydown.enter)="$event.preventDefault()"
+                        (keydown.tab)="checkSupplierCode($event)" (keyup.enter)="checkSupplierCode($event)"
+                        oninput="this.value = this.value.toUpperCase()" minlength="5" maxlength="7"
+                        formControlName="supplierCode" placeholder="Supplier Code">
+                </mat-form-field>
+                <p *ngIf=" !createIncidentForm.get('supplierCode').touched || (!createIncidentForm.get('supplierCode').hasError('required') && !createIncidentForm.get('supplierCode').hasError('whitespace') && 
+                !createIncidentForm.get('supplierCode').hasError('minlength') && !createIncidentForm.get('supplierCode').hasError('pattern') && !isInvalidSupplierCode)"
+                    class="file-size">
+                    Enter 5 or 7-digit supplier code and press enter/Tab key.</p>
+                <mat-error *ngIf="isInvalidSupplierCode">
+                    Supplier Code Not Found.
+                </mat-error>
+                <mat-error
+                    *ngIf="!isInvalidSupplierCode && createIncidentForm.get('supplierCode').touched && !createIncidentForm.get('supplierCode').hasError('minlength') &&
+                     !createIncidentForm.get('supplierCode').hasError('required') && !createIncidentForm.get('supplierCode').hasError('whitespace') && createIncidentForm.get('supplierCode').hasError('pattern')">
+                    Special characters not allowed
+                </mat-error>
+                <mat-error
+                    *ngIf="!isInvalidSupplierCode && createIncidentForm.get('supplierCode').touched && createIncidentForm.get('supplierCode').hasError('minlength') && !createIncidentForm.get('supplierCode').hasError('required') && !createIncidentForm.get('supplierCode').hasError('whitespace')">
+                    Enter a valid Supplier code
+                </mat-error>
+                <mat-error
+                    *ngIf="!isInvalidSupplierCode && createIncidentForm.get('supplierCode').touched && (createIncidentForm.get('supplierCode').hasError('required') || createIncidentForm.get('supplierCode').hasError('whitespace'))">
+                    Supplier code is required!
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Name</mat-label>
+                    <input matInput formControlName="supplierName" placeholder="Supplier Name" readonly="true">
+                </mat-form-field>
+                <mat-error *ngIf="createIncidentForm.get('supplierName').touched && (createIncidentForm.get('supplierName').hasError('required') || createIncidentForm.get('supplierName').hasError('whitespace')|| 
+                    createIncidentForm.get('supplierName').hasError('incorrect'))">
+                    Supplier name is required!
+                </mat-error>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start"
+            class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18">
+
+            <div class="pad-t-sm" fxFlex.gt-sm="30" fxFlex.gt-md="30" fxFlex.gt-xs="30" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="address" placeholder="Address" readonly>
+                </mat-form-field>
+            </div>
+            <span fxFlex></span>
+
+            <div class="pad-t-sm" fxFlex.gt-sm="22" fxFlex.gt-md="22" fxFlex.gt-xs="22" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city" placeholder="City" readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('city').touched && (createIncidentForm.get('city').hasError('required') || createIncidentForm.get('city').hasError('whitespace'))">
+                    City is required!
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="22" fxFlex.gt-md="22" fxFlex.gt-xs="22" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>State</mat-label>
+                    <input matInput formControlName="state" placeholder="State" readonly>
+
+                </mat-form-field>
+                <!-- <mat-error *ngIf="createIncidentForm.get('state').touched && createIncidentForm.get('state').hasError('required')">
+                            Select State
+                        </mat-error> -->
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="22" fxFlex.gt-md="22" fxFlex.gt-xs="22" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Country</mat-label>
+                    <input matInput formControlName="country" placeholder="Country" readonly>
+                </mat-form-field>
+                <!-- <mat-error *ngIf="createIncidentForm.get('country').touched && createIncidentForm.get('country').hasError('required')">
+                    Select Country
+                </mat-error> -->
+            </div>
+
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start"
+            class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18 ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Technical Area</mat-label>
+                    <mat-select matInput formControlName="technicalArea" placeholder="Techinical Area">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForTechArea"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="list"
+                            *ngFor="let list of technicalArea | searchPipe : createIncidentForm.value.searchTextForTechArea">
+                            {{ list | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('technicalArea').touched && createIncidentForm.get('technicalArea').hasError('required')">
+                    Select technical Area
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Manager Name</mat-label>
+                    <mat-select matInput formControlName="managerName" placeholder=" Manager Name">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForManagerName"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="list.managerName"
+                            *ngFor="let list of managerNames | searchPipe : createIncidentForm.value.searchTextForManagerName ">
+                            {{ list.managerName | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('managerName').touched && createIncidentForm.get('managerName').hasError('required')">
+                    Select Manager Name
+                </mat-error>
+            </div>
+
+        </div>
+
+
+
+        <!-- <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Country</mat-label>
+                    <mat-select matInput formControlName="country" placeholder="Country">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForCountry"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="country" *ngFor="let country of dropDownDetails.countryList">
+                            {{ country | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>State</mat-label>
+                    <mat-select matInput formControlName="state" placeholder="State">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForState"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="state" *ngFor="let state of dropDownDetails.stateList">
+                            {{ state | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix
+      ">
+                    <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Amount</mat-label>
+                            <input matInput formControlName="amount" placeholder="Amount">
+                        </mat-form-field>
+                    </div>
+                    <span fxFlex></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Currency</mat-label>
+                            <mat-select matInput formControlName="currency" placeholder="Currency">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForCurrency"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option [value]="currency" *ngFor="let currency of dropDownDetails.currencyList">
+                                    {{ currency | uppercase}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city" placeholder="City">
+                </mat-form-field>
+            </div>
+        </div> -->
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Primary Non-Conformity</mat-label>
+                    <mat-select matInput formControlName="primaryNonConformity" placeholder="Primary Non-Conformity"
+                        (selectionChange)="onChangingPNC($event)">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForPrimaryNonConformity"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="primaryNonConformity"
+                            *ngFor="let primaryNonConformity of dropDownDetails.primaryNonConformityList | searchPipe : createIncidentForm.value.searchTextForPrimaryNonConformity">
+                            {{ primaryNonConformity | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('primaryNonConformity').touched && createIncidentForm.get('primaryNonConformity').hasError('required')">
+                    Select Primary Non-Conformity
+                </mat-error>
+            </div>
+
+            <span fxFlex></span>
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Secondary Non-Conformity</mat-label>
+                    <mat-select matInput formControlName="secondaryNonConformity"
+                        [disabled]="!secondaryNonConformityList.length" placeholder="Secondary Non-Conformity">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForSecondaryNonConformity"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="secondaryNonConformity"
+                            *ngFor="let secondaryNonConformity of secondaryNonConformityList | searchPipe : createIncidentForm.value.searchTextForSecondaryNonConformity">
+                            {{ secondaryNonConformity | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('secondaryNonConformity').touched && createIncidentForm.get('secondaryNonConformity').hasError('required')">
+                    Select Secondary Non-Conformity
+                </mat-error>
+            </div>
+        </div>
+        <!-- <loading *ngIf="isLoading">{{ isLoading }}</loading> -->
+        <div *ngIf="createIncidentForm.contains('amount')&& createIncidentForm.contains('currency')" fxLayout="row wrap"
+            fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Currency</mat-label>
+                    <mat-select matInput formControlName="currency" placeholder="Currency">
+                        <mat-option>
+                            <ngx-mat-select-search formControlName="searchTextForCurrency"
+                                placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                            </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option [value]="currency"
+                            *ngFor="let currency of dropDownDetails.currencyList | searchPipe : createIncidentForm.value.searchTextForCurrency">
+                            {{ currency | uppercase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('currency').touched && createIncidentForm.get('currency').hasError('required')">
+                    Select Currency
+                </mat-error>
+            </div>
+
+
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input matInput formControlName="amount" placeholder="Amount" id="amount"
+                        (keydown)="onKeydown($event)">
+                </mat-form-field>
+                <mat-error *ngIf="createIncidentForm.get('amount').touched && (createIncidentForm.get('amount').hasError('required') ||
+                     createIncidentForm.get('amount').hasError('whitespace')) ">
+                    Amount is required!
+                </mat-error>
+            </div>
+
+        </div>
+
+
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Details</mat-label>
+                    <textarea class="cus-text-area" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" maxlength='2000' minlength="50" matInput
+                        formControlName="details" placeholder="Details"></textarea>
+                </mat-form-field>
+                <p *ngIf="!(createIncidentForm.get('details').touched && (createIncidentForm.get('details').hasError('required') || createIncidentForm.get('details').hasError('whitespace')))"
+                    class="file-size">
+                    Details required min 50 characters for a claim and max 2000 characters.</p>
+                <mat-error
+                    *ngIf="createIncidentForm.get('details').touched && (createIncidentForm.get('details').hasError('required') || createIncidentForm.get('details').hasError('whitespace'))">
+                    Details is required!
+                </mat-error>
+            </div>
+
+
+        </div>
+        <!-- <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="99" fxFlex.gt-md="99" fxFlex.gt-xs="99" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <mat-chip-list #chipList formArrayName="emailIds">
+                        <mat-chip [color]="(item.invalid)?'warn':''" selected
+                            *ngFor="let item of emailList; let i=index" [selectable]="true"
+                            [removable]="removable" (removed)="removeEmail(item)" required name="chips">
+                            {{item.value}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Enter email " [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes "
+                            [matChipInputAddOnBlur]="true " (matChipInputTokenEnd)="add($event) " />
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+
+        </div> -->
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        mt-18
+      ">
+            <!-- <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100"> -->
+            <!-- <mat-form-field class="full-width" appearance="outline">
+                    <div *ngFor="let files of getFileFormControls(); let i = index" >
+                    <input matInput [formControl]="file" readonly placeholder="No File Chosen" [value]="files">
+                   
+                    <mat-icon *ngIf="createIncidentForm.value.file != '' || createIncidentForm.value.file > 0" class="btnClose" (click)="removeItem(i)">close</mat-icon>
+                
+                    <mat-icon matSuffix color="primary" class="cursor-pointer btnCloud"
+                        (click)="!isAdding ? fileInput.click() : ''" [matTooltip]="!isAdding  ? 'Select File' : ''">
+                        cloud_upload</mat-icon>
+                    <input type="file" class="d-none" (change)="onSelectingFile($event)" multiple #fileInput accept=".pdf">
+                </div>
+                </mat-form-field> -->
+
+            <!-- <mat-form-field class="full-width" appearance="outline">
+                    <input matInput formControlName="file" readonly placeholder="No File Chosen" >
+                    <mat-icon matSuffix color="primary" class="cursor-pointer "
+                        (click)="!isAdding ? fileInput.click() : ''" [matTooltip]="!isAdding  ? 'Select File' : ''">
+                        cloud_upload</mat-icon>
+                    <input type="file" class="d-none" (change)="onSelectingFile($event)" multiple  #fileInput accept=".pdf">
+                </mat-form-field> -->
+
+            <!-- <span fxFlex></span> -->
+            <div class="pad-t-sm" fxFlex.gt-sm="36" fxFlex.gt-md="36" fxFlex.gt-xs="36" fxFlex="100">
+
+                <!-- <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100"> -->
+
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Zip Code</mat-label>
+                    <input matInput formControlName="zipCode" placeholder="Zip Code" readonly>
+                </mat-form-field>
+            </div>
+            <span fxFlex></span>
+
+            <div fxFlex.gt-sm="13" fxFlex.gt-md="13" fxFlex.gt-xs="13" fxFlex="100">
+
+                <button mat-button style="width: 90px; height: 39px;font-size: 10px;" matTooltip="Add Stellantis Emails"
+                    (click)="onClickEmail()"
+                    [disabled]="isLoadingSupplierCodeDetails || isLoading || (createIncidentForm.get('managerName').value=='' || createIncidentForm.get('managerName').value== null)">
+                    <!-- <mat-icon matPreffix class="cus-emailBtn">add</mat-icon> -->
+                    <span style="position: relative;right:5px"> Stellantis Email</span>
+
+                </button>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Email 1</mat-label>
+                    <input matInput formControlName="email1" placeholder="Email1" type="email"
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\.[a-zA-Z]{2,}$">
+                </mat-form-field>
+                <mat-error *ngIf="createIncidentForm.get('email1').touched && (createIncidentForm.get('email1').hasError('required') 
+                    || createIncidentForm.get('email1').hasError('whitespace'))">
+                    Enter Supplier Email
+                </mat-error>
+                <mat-error
+                    *ngIf="createIncidentForm.get('email1').touched && createIncidentForm.get('email1').hasError('pattern') ||
+                    createIncidentForm.get('email1').hasError('incorrect')">
+                    Invalid Email.
+                </mat-error>
+                
+            </div>
+
+            <!-- <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix
+      ">
+                    <div class="pad-t-sm" fxFlex.gt-sm="99" fxFlex.gt-md="99" fxFlex.gt-xs="99" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Supplier Email 1</mat-label>
+                            <input matInput formControlName="email1" placeholder="Email1" readonly="true">
+                        </mat-form-field>
+                        <mat-error
+                            *ngIf="createIncidentForm.get('email1').touched && (createIncidentForm.get('email1').hasError('required') || createIncidentForm.get('email1').hasError('whitespace'))">
+                            Enter Supplier Email 1
+                        </mat-error>
+                    </div>
+
+                    <div class="pad-t-sm" fxFlex.gt-sm="99" fxFlex.gt-md="99" fxFlex.gt-xs="99" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" placeholder="Email">
+                        </mat-form-field>
+                    </div>  -->
+            <!-- <div class="pad-t-sm" fxFlex.gt-sm="99" fxFlex.gt-md="99" fxFlex.gt-xs="99" fxFlex="100"> -->
+            <!-- <mat-form-field class="full-width" appearance="outline">
+                            <mat-chip-list #chipList formArrayName="emailIds">
+                                <mat-chip [color]="(item.invalid)?'warn':''" selected
+                                    *ngFor="let item of emailList; let i=index" [selectable]="true"
+                                    [removable]="removable" (removed)="removeEmail(item)" required name="chips">
+                                    {{item.value}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="enter item " [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes "
+                                    [matChipInputAddOnBlur]="true " (matChipInputTokenEnd)="add($event) " />
+                            </mat-chip-list>
+                        </mat-form-field> -->
+            <!-- <div *ngFor="let user of form.controls.user.controls; let i = index" formGroupName="{{i}}">
+
+                        </div> -->
+            <!-- <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" placeholder="Email">
+                        </mat-form-field> -->
+            <!-- </div> -->
+            <!-- </div>
+
+            </div>  -->
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start"
+            class=" gene-form-wizard  cus-jus-center trade-crypto crypto-input-prefix mt-18 ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Email 2</mat-label>
+                    <input matInput formControlName="email2" placeholder="Email2" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\.[a-zA-Z]{2,}$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('email2').touched && createIncidentForm.get('email2').hasError('pattern') || createIncidentForm.get('email2').hasError('incorrect') ">
+                    Invalid Email.
+                </mat-error>
+                <!-- <mat-error 
+                *ngIf="createIncidentForm.get('email2').touched && createIncidentForm.get('email2').value.includes('stellantis')">
+                Invalid Email.
+            </mat-error> -->
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Email 3</mat-label>
+                    <input matInput formControlName="email3" placeholder="Email3" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\.[a-zA-Z]{2,}$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('email3').touched &&createIncidentForm.get('email3').hasError('pattern')||
+                    createIncidentForm.get('email3').hasError('incorrect') ">
+                    Invalid Email.
+                </mat-error>
+                
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Email 4</mat-label>
+                    <input matInput formControlName="email4" placeholder="Email4" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\.[a-zA-Z]{2,}$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('email4').touched &&createIncidentForm.get('email4').hasError('pattern')||
+                    createIncidentForm.get('email4').hasError('incorrect')">
+                    Invalid Email.
+                </mat-error>
+               
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Email 5</mat-label>
+                    <input matInput formControlName="email5" placeholder="Email5" type="email"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\.[a-zA-Z]{2,}$">
+                </mat-form-field>
+                <mat-error
+                    *ngIf="createIncidentForm.get('email5').touched &&createIncidentForm.get('email5').hasError('pattern') ||
+                    createIncidentForm.get('email5').hasError('incorrect')">
+                    Invalid Email.
+                </mat-error>
+                
+            </div>
+
+            <!-- <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Zip Code</mat-label>
+                    <input matInput formControlName="zipCode" placeholder="Zip Code">
+                </mat-form-field>
+            </div> -->
+
+            <div class="pad-t-sm mt-18" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <div style="height: 20px;">
+                        <button mat-button class="btnclor" (click)="!isAdding ? fileInput.click() : ''">File Upload
+                            <mat-icon matSuffix style="color: white;margin-left: 5px;" class="cursor-pointer"
+                                [matTooltip]="!isAdding  ? 'Select File' : ''">
+                                cloud_upload</mat-icon>
+                        </button>
+                        <input matInput formControlName="file" readonly placeholder="File Chosen" hidden="true">
+                        <input type="file" class="d-none" (change)="onSelectingFile($event)" multiple #fileInput
+                            accept=".pdf" (click)="$any($event.target).value=null">
+                    </div>
+                    <div *ngFor="let files of allFiles;let i=index" style="height:27px;position: relative;top:15px">
+                        <input matInput readonly [value]="files">
+                        <button class="btnClose" *ngIf="isFileSelected" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="removeItem(i)">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </mat-form-field>
+
+                <p *ngIf="!(createIncidentForm.get('file').touched && allFiles.length == 0)" class="file-size"> Max file
+                    size 2MB for Each File and Special characters not allowed in File Name.</p>
+                <mat-error *ngIf="createIncidentForm.get('file').hasError('incorrect') && allFiles.length == 0 ">
+                    File is required
+                </mat-error>
+            </div>
+        </div>
+
+    </form>
+    <div class="cus-mt">
+        <div class="button-row justify-center">
+            <button [disabled]="!checkFormDataToEnableClearButton() || isLoadingSupplierCodeDetails || isLoading"
+                mat-raised-button color="primary" (click)="openConfirmationPopup('clear')">Clear
+            </button>
+            <button mat-raised-button color="primary" class="cus-btn-margin"
+                [disabled]="isLoadingSupplierCodeDetails || isLoading"
+                (click)="checkSupplierCode('Draft')">Save</button>
+            <button mat-raised-button color="primary" class="cus-btn-margin"
+                [disabled]="isLoadingSupplierCodeDetails || isLoading"
+                (click)="checkSupplierCode('Pending')">Submit</button>
+            <button mat-raised-button color="primary" class="cus-btn-margin"
+                [disabled]="isLoadingSupplierCodeDetails || isLoading"
+                (click)="checkFormDataToEnableClearButton() ? openConfirmationPopup('exit') : closePopup()">Exit</button>
+        </div>
+    </div>
+</div>

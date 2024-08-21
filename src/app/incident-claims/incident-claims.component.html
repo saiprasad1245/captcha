@@ -1,0 +1,590 @@
+<div fxLayout="row wrap" fxLayoutAlign="start" *ngIf="!isManagerView">
+ 
+    <mat-card fxFlex="100%" class="bg">
+        <div class="pad-t-sm " fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+            <!-- <div fxLayout="row wrap" class="justify-center role-header-text font-bold" fxLayoutAlign="start">
+                SUPPLIER
+
+            </div> -->
+            <form [formGroup]="searchForm" class="searchForm">
+                <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix 
+      ">
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Supplier Code</mat-label>
+                            <input matInput formControlName="supplierCode" maxlength="7" />
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Supplier Name</mat-label>
+                            <input matInput formControlName="supplierName" />
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address" />
+                        </mat-form-field>
+                    </div>
+
+                    <span class="space-flex"></span>
+
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>City</mat-label>
+                            <input matInput formControlName="city" />
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="state">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForState"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="state"
+                                    *ngFor="let state of stateList  | searchPipe : searchForm.value.searchTextForState">
+                                    {{ state | uppercase}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Country</mat-label>
+                            <mat-select formControlName="country">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForCountry"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="country"
+                                    *ngFor="let country of countryList | searchPipe : searchForm.value.searchTextForCountry">
+                                    {{ country | uppercase}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start"
+                    class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix ">
+
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Incident Originator</mat-label>
+                            <mat-select formControlName="incidentOriginator">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForOriginator"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="originator"
+                                    *ngFor="let originator of userIds | searchPipe : searchForm.value.searchTextForOriginator">
+                                    {{ originator | uppercase}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>SUPREL #</mat-label>
+                            <input matInput formControlName="suprel" maxlength="15" />
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Technical Area</mat-label>
+                            <mat-select matInput formControlName="technicalArea" placeholder="Techinical Area">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForTechArea"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="list"
+                                    *ngFor="let list of technicalArea | searchPipe : searchForm.value.searchTextForTechArea">
+                                    {{ list | uppercase}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Manager Name</mat-label>
+                            <mat-select matInput formControlName="managerName" placeholder=" Manager Name">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForManagerName"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="list.managerName"
+                                    *ngFor="let list of managerNames | searchPipe : searchForm.value.searchTextForManagerName ">
+                                    {{ list.managerName | uppercase}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <span class="space-flex"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Primary Non-Conformity </mat-label>
+                            <mat-select formControlName="primaryNonConformity"
+                                (selectionChange)="onChangingPNC($event)">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForIncidentCategory"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="incidentCategory"
+                                    *ngFor="let incidentCategory of dropDownDetails.primaryNonConformityList | searchPipe : searchForm.value.searchTextForIncidentCategory">
+                                    {{ incidentCategory }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <span class="space-flex"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Secondary Non-Conformity </mat-label>
+                            <mat-select formControlName="secondaryNonConformity"
+                                [disabled]="!secondaryNonConformityList.length">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchForSecondaryNonConfirm"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="secondaryNonConformity"
+                                    *ngFor="let secondaryNonConformity of secondaryNonConformityList | searchPipe : searchForm.value.searchForSecondaryNonConfirm">
+                                    {{ secondaryNonConformity }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- <span class="space-flex"></span> -->
+
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Incident Status</mat-label>
+                            <mat-select formControlName="status">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForStatus"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option value=''>None</mat-option>
+                                <mat-option [value]="status"
+                                    *ngFor="let status of statusList | searchPipe : searchForm.value.searchTextForStatus">
+                                    {{ status }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <span style="margin-right:2%"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Issued Date From</mat-label>
+                            <input #fromDateInput matInput [matDatepicker]="picker" [min]="minDateFrom" [max]="maxDate"
+                                formControlName="issueFromDate" autocomplete="off" placeholder="MM/DD/YYYY"
+                                (dateInput)="onSelectingFromDate($event)" />
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-error
+                            *ngIf="searchForm.get('issueFromDate').touched && searchForm.get('issueFromDate').status == 'INVALID'">
+                            Enter a valid date.
+                        </mat-error>
+                    </div>
+                    <span style="margin-right:2%"></span>
+                    <div class="pad-t-sm " fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Issued Date To</mat-label>
+                            <input #toDateInput matInput [matDatepicker]="toDatePicker" [min]="minDate"
+                                formControlName="issueToDate" placeholder="MM/DD/YYYY"
+                                (dateInput)="onSelectingToDate($event)" />
+                            <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #toDatePicker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-error
+                            *ngIf="searchForm.get('issueToDate').touched && searchForm.get('issueToDate').status == 'INVALID'">
+                            Enter a valid date.
+                        </mat-error>
+                    </div>
+
+                    <span style="margin-right:2%"></span>
+                    <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Calander Year</mat-label>
+                            <mat-select formControlName="year">
+                                <mat-option>
+                                    <ngx-mat-select-search formControlName="searchTextForYear"
+                                        placeholderLabel="Enter text to search" noEntriesFoundLabel="No match found">
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option [value]="year"
+                                    *ngFor="let year of yearList | searchPipe : searchForm.value.searchTextForYear">
+                                    {{ year }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="pad-t-sm" fxFlex.gt-sm="15" fxFlex.gt-md="15" fxFlex.gt-xs="15" fxFlex="100">
+
+                    </div> -->
+                </div>
+
+                <div fxLayout="row" class="justify-center cus-search-btn ">
+                    <button mat-raised-button (click)="searchIncidentClaims()" color="primary"
+                        [disabled]="isLoadingData || isLoadingBtn || isLoading">
+                        Search
+                    </button>
+                    <button mat-raised-button color="primary" style="margin-left: 20px;"
+                        [disabled]="isLoadingData || isLoadingBtn || isLoading"
+                        (click)="searchForm.reset();resetData()">
+                        Reset
+                    </button>
+
+                    <button *ngIf="userRoleId == 1" style="margin-left: 20px;" color="primary" mat-raised-button
+                        [disabled]="isLoadingData || isLoadingBtn || isLoading" (click)="createIncidentClaim()">
+                        Create Incident Claim
+                    </button>
+
+                    <span style="margin-right:2%"></span>
+                    <div fxLayout="row" *ngIf="userRoleId == 2" panelClass="panel-custom-width" class="cus-dropdown">
+                        <mat-label>Change Role</mat-label>
+                        <mat-select (selectionChange)="onChangingRole($event)">
+                            <mat-option value='Manager'>Manager</mat-option>
+                            <mat-option value='Originator'>Originator</mat-option>
+                        </mat-select>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
+<div class="cus-min-height justify-center" *ngIf="isLoadingData || isLoading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<mat-spinner [diameter]="50" class="cus-mat-spinner" *ngIf="isLoadingBtn"></mat-spinner>
+<mat-card class="cus-mat-table tbleBg" *ngIf="incidentClaimList && !isLoadingData">
+
+    <div fxLayout="row wrap" fxLayoutAlign="start"
+        class="gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix cus-margin-bottom ">
+        <div class="pad-t-sm" fxFlex.gt-sm="25" fxFlex.gt-md="25" fxFlex.gt-xs="25" fxFlex="100">
+            <p *ngIf="incidentClaimList || isLoadingData" class="cus-table-header-text">Incident Claim List</p>
+        </div>
+        <!-- <div class="pad-t-sm justify-center" fxFlex.gt-sm="33.33" fxFlex.gt-md="33.33" fxFlex.gt-xs="33.33" fxFlex="100">
+            <div class="button-row">
+                <button mat-stroked-button color="primary" class="cus-btn-margin" *ngIf = 'userRoleId == 2' [ngClass]="isShowingAcceptanceData ? 'cus-link-highlighted' : 'cus-link'" (click)="getCertificatesWaitingForAcceptance();searchForm.reset()">
+                    Certificates Waiting For Acceptance
+                </button>
+            </div>
+        </div> -->
+        <div class="pad-t-sm justify-center" fxFlex.gt-sm="25" fxFlex.gt-md="25" fxFlex.gt-xs="25" fxFlex="100"
+            style="margin-top: 8px;justify-content: end;">
+            <button mat-stroked-button class="cus-btn-margin " *ngIf='userRoleId == 2 && incidentClaimList.length > 0'
+                [ngClass]="isShowingAcceptanceData ? 'cus-link-highlighted' : 'cus-link'"
+                (click)="getCertificatesWaitingForAcceptance();searchForm.reset()"
+                [disabled]="isLoadingData || isLoadingBtn">
+                Claims Waiting For Acceptance
+            </button>
+        </div>
+
+        <div class="pad-t-sm" style="text-align: end" fxFlex.gt-sm="50" fxFlex.gt-md="50" fxFlex.gt-xs="50"
+            fxFlex="100">
+            <span class="space-flex"></span>
+            <div class="button-row" style="margin-top: 8px;">
+                <!-- <div *ngIf=" userRoleId == 4"> -->
+                <button mat-raised-button class="cus-bulk-download-btn" [disabled]="isLoadingData || isLoadingBtn"
+                    matTooltip="Click to download sample BulkUpload file" *ngIf=" userRoleId == 4"
+                    (click)="downloadSampleFile('BulkUpload')">
+                    <mat-icon color="primary" class="cursor-pointer">
+                        cloud_download
+                    </mat-icon>
+                </button>
+                <button mat-raised-button color="primary" class="cus-btn-margin cursor-pointer bulk-button-border"
+                    [disabled]="isLoadingData || isLoadingBtn" *ngIf=" userRoleId == 4" matSuffix color="primary" (click)="managerFileInput.click()" [matTooltip]="'Select File'">
+                    Bulk Upload</button>
+                <input type="file" class="d-none" (change)="onSelectingFile($event,'BulkUpload')"
+                    (click)="$any($event.target).value=null" #managerFileInput accept=".xls, .xlsx">
+                <!-- </div> -->
+                <button mat-raised-button (click)="downloadSampleFile('ManagerListUpload')"
+                    class="cus-bulk-download-btn" [disabled]="isLoadingData || isLoadingBtn" *ngIf=" userRoleId == 4"
+                    matTooltip="Click to download sample ManagerListUpload file">
+                    <mat-icon color="primary" class="cursor-pointer">
+                        cloud_download
+                    </mat-icon>
+                </button>
+                <button mat-raised-button color="primary" class="cus-btn-margin cursor-pointer bulk-button-border"
+                    [disabled]="isLoadingData || isLoadingBtn" *ngIf=" userRoleId == 4" matSuffix color="primary"
+                    (click)="fileInput.click()" [matTooltip]="'Select File'">
+                   ManagerList Upload</button>
+                <input type="file" class="d-none" (change)="onSelectingFile($event,'ManagerListUpload')"
+                    (click)="$any($event.target).value=null" #fileInput accept=".xls, .xlsx">
+                <!-- </div> -->
+                <button color="primary"
+                    *ngIf="selectedIncidentClaims  && incidentClaimList.length > 0 && !viewMode && userRoleId == 1"
+                    mat-raised-button (click)="viewOrEditIncidentClaimList('edit')"
+                    [disabled]="isLoadingData || isLoadingBtn">
+                    Edit
+                </button>
+                <button color="primary" *ngIf="selectedIncidentClaims && incidentClaimList.length > 0 && viewMode"
+                    mat-raised-button (click)="viewOrEditIncidentClaimList('view')"
+                    [disabled]="isLoadingData || isLoadingBtn">
+                    View
+                </button>
+                <button color="primary"
+                    *ngIf="selectedIncidentClaims && incidentClaimList.length > 0 && userRoleId == 2 && viewManagerMode"
+                    mat-raised-button (click)="viewOrEditIncidentClaimList('viewManagerMode')"
+                    [disabled]="isLoadingData || isLoadingBtn">
+                    View
+                </button>
+                <!-- <button mat-raised-button color="primary" *ngIf="incidentClaimList && incidentClaimList.length && !isLoadingData"
+                [disabled]="isAccepting || isRejecting" (click)="!isAccepting && !isRejecting ? exportData() : ''"
+                class="cus-btn-margin" [matMenuTriggerFor]="menu">Extract</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu> -->
+                <button class="cus-btn-margin cus-btn-shadow" mat-button color="primary"
+                    [ngClass]="isLoadingData || isLoadingBtn ? 'disable-Btn':''"
+                    *ngIf="incidentClaimList && incidentClaimList.length && !isLoadingData"
+                    [matMenuTriggerFor]="menu">Extract</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="exportData('pdf')">pdf</button>
+                    <button mat-menu-item (click)="exportData('xlsx')">xlsx</button>
+                </mat-menu>
+                <button mat-button color="primary" [ngClass]="isLoadingData || isLoadingBtn ? 'disable-Btn':''"
+                    *ngIf="incidentClaimList && incidentClaimList.length && !isLoadingData"
+                    [disabled]="isAccepting || isRejecting " (click)="reportData()"
+                    class="cus-btn-margin cus-btn-shadow">
+                    Report Generation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <mat-divider *ngIf="incidentClaimList || isLoadingData"></mat-divider>
+    <div class="cus-min-height justify-center"
+        *ngIf="incidentClaimList && !incidentClaimList.length && !isLoadingData && !isShowErrorMessage">
+        Data Not Found
+    </div>
+
+    <div class="cus-min-height" *ngIf="incidentClaimList && incidentClaimList.length > 0 && !isLoadingData">
+        <div class="table-container cus-mat-table ">
+            <cdk-virtual-scroll-viewport tvsItemSize="48" class="wrapper  mat-elevation-z2 custom-scroll">
+                <mat-table [dataSource]="tableData" matSortActive="supplierCode" (matSortChange)="sortEvent($event)"
+                    #cusMatTable matSort class="mat-elevation-z8">
+                    <ng-container matColumnDef="selectRow">
+                        <mat-header-cell class="col-header-pad justify-center" fxFlex="4" *matHeaderCellDef
+                            disableClear>
+
+                        </mat-header-cell>
+                        <mat-cell fxFlex="5" *matCellDef="let element" class="justify-center cus-radio">
+
+                            <mat-radio-button #matRadioBtn [checked]="selectedRows.isSelected(element)"
+                                [ngClass]="isLoadingData || isLoadingBtn ? 'disabled-radio':''"
+                                (click)="toggleSelection(matRadioBtn,element)" (change)="selectedRows.toggle(element)">
+                            </mat-radio-button>
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="supplierCode">
+                        <mat-header-cell class="col-header-pad" fxFlex="7" *matHeaderCellDef mat-sort-header
+                            disableClear>Supplier
+                            Code
+                        </mat-header-cell>
+                        <mat-cell fxFlex="6" *matCellDef="let element">
+                            <!-- {{ element.supplierCode }} -->
+
+                            <span style="position: relative;bottom:6px">{{element.supplierCode}}</span>
+                            <mat-icon (click)="openActivityLog(element)" color="primary"
+                                [ngClass]="isLoadingData || isLoadingBtn ? 'disabled-radio':''"
+                                class="cursor-pointer cus-mat-info-icon"
+                                matTooltip="Click to view logs for {{element.suprelNo}}">
+                                info
+                            </mat-icon>
+
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="supplierName">
+                        <mat-header-cell class="col-header-pad" fxFlex="8" *matHeaderCellDef mat-sort-header
+                            disableClear>Supplier
+                            Name
+                        </mat-header-cell>
+                        <mat-cell fxFlex="8" *matCellDef="let element">{{ element.supplierName }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="address">
+                        <mat-header-cell class="col-header-pad" fxFlex="10" *matHeaderCellDef mat-sort-header
+                            disableClear>Address
+                        </mat-header-cell>
+                        <mat-cell fxFlex="8" *matCellDef="let element">{{ element.supplierAddress }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="city">
+                        <mat-header-cell class="col-header-pad " fxFlex="5" *matHeaderCellDef mat-sort-header
+                            disableClear>
+                            City
+                        </mat-header-cell>
+                        <mat-cell fxFlex="5" *matCellDef="let element">{{ element.city }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="state">
+                        <mat-header-cell class="col-header-pad" fxFlex="5" *matHeaderCellDef mat-sort-header
+                            disableClear>
+                            State
+                        </mat-header-cell>
+                        <mat-cell fxFlex="5" *matCellDef="let element">{{ element.state }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="country">
+                        <mat-header-cell class="col-header-pad " fxFlex="5" *matHeaderCellDef mat-sort-header
+                            disableClear>
+                            Country
+                        </mat-header-cell>
+                        <mat-cell fxFlex="5" *matCellDef="let element">{{ element.country }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="suprelNo">
+                        <mat-header-cell class="col-header-pad " fxFlex="6" *matHeaderCellDef mat-sort-header
+                            disableClear>
+                            SUPREL #
+                        </mat-header-cell>
+                        <mat-cell fxFlex="6.5" *matCellDef="let element">{{ element.suprelNo }}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="technicalArea">
+                        <mat-header-cell class="col-header-pad" fxFlex="7" *matHeaderCellDef mat-sort-header
+                            disableClear>Technical
+                            Area
+                        </mat-header-cell>
+                        <mat-cell fxFlex="7" *matCellDef="let element">{{ element.technicalArea ?
+                            element.technicalArea : '' }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="originatorName">
+                        <mat-header-cell class="col-header-pad" fxFlex="7" *matHeaderCellDef mat-sort-header
+                            disableClear>Originator Name
+                        </mat-header-cell>
+                        <mat-cell fxFlex="7" *matCellDef="let element">{{ element.originatorName ?
+                            element.originatorName : '' }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="managerName">
+                        <mat-header-cell class="col-header-pad " fxFlex="7" *matHeaderCellDef mat-sort-header
+                            disableClear>Manager
+                            Name
+                        </mat-header-cell>
+                        <mat-cell fxFlex="7" *matCellDef="let element">{{ element.managerName ?
+                            element.managerName : '' }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="primaryNonConformity">
+                        <mat-header-cell class="col-header-pad " fxFlex="10" *matHeaderCellDef mat-sort-header
+                            disableClear>
+                            Primary
+                            Non-Conformity
+                        </mat-header-cell>
+                        <mat-cell fxFlex="10" *matCellDef="let element">{{ element.primaryNonConformity}}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="secondaryNonConformity">
+                        <mat-header-cell class="col-header-pad " fxFlex="11" *matHeaderCellDef mat-sort-header
+                            disableClear>
+                            Secondary
+                            Non-Conformity
+                        </mat-header-cell>
+                        <mat-cell fxFlex="7" *matCellDef="let element">{{ element.secondaryNonConformity}}
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="suprelStatus">
+                        <mat-header-cell mat-sort-header fxFlex="10" class="col-header-pad " *matHeaderCellDef
+                            disableClear>
+                            Incident
+                            Status
+                        </mat-header-cell>
+                        <mat-chip-list fxFlex="11" *matCellDef="let element" class="justify-center">
+                            <!-- <mat-chip 
+                                [ngClass]=" grayStatus.includes(element.suprelStatus) || element.suprelStatus == 'Cancelled'? 'color-gray' : 
+                                element.suprelStatus == 'Pending' ||  element.suprelStatus == 'Disputed' ? 'color-yellow' : 
+                                element.suprelStatus == 'Closed' ? 'color-blue' : element.suprelStatus == 'Issued' ? 'color-green' : 'color-red'">
+                                {{ element.suprelStatus }} </mat-chip> -->
+                            <mat-chip [ngClass]="element.suprelStatus == 'Pending' ? 'color-blue' : element.suprelStatus == 'Issued' ? 'color-yellow' : 
+                            element.suprelStatus == 'Disputed' ? 'color-orange' : element.suprelStatus == 'Final' ? 'color-green' :
+                            element.suprelStatus == 'Draft' && element.managerComments != null ? 'color-red' : 'color-gray'
+                               ">
+                                {{ element.suprelStatus }} </mat-chip>
+                        </mat-chip-list>
+                    </ng-container>
+                    <ng-container matColumnDef="issuedDate">
+                        <mat-header-cell class="col-header-pad " fxFlex="7" *matHeaderCellDef disableClear>Issued
+                            Date
+                        </mat-header-cell>
+                        <mat-cell fxFlex="7" *matCellDef="let element" class="justify-center ">
+                            {{ element.issuedDate && element.issuedDate.split('T')[0] ?
+                            (element.issuedDate.split('T')[0] | date: 'MM/dd/yyyy') : ''}}
+                        </mat-cell>
+                        <!-- <mat-chip-list *matCellDef="let element" class="justify-center ">
+                            <mat-chip [ngClass]="(!element.suprelStatus || !element.issuedDate) ? 'color-none' :
+                greenBgForDate.includes(element.suprelStatus) ? 'color-green' : 'color-red'">{{ element.issuedDate &&
+                                element.issuedDate.split('T')[0] ?
+                                (element.issuedDate.split('T')[0] | date: 'MM/dd/yyyy') : ''}} </mat-chip>
+                        </mat-chip-list> -->
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                </mat-table>
+            </cdk-virtual-scroll-viewport>
+
+            <div class="pad-t-sm cus-export">
+                <button class="cus-btn-margin cus-btn-shadow" mat-button
+                    [ngClass]="isLoadingData || isLoadingBtn ? 'disable-Btn':''"
+                    *ngIf="incidentClaimList && incidentClaimList.length && !isLoadingData"
+                    [matMenuTriggerFor]="below">Extract</button>
+                <mat-menu #below="matMenu" yPosition="below">
+                    <button mat-menu-item (click)="exportData('pdf')">pdf</button>
+                    <button mat-menu-item (click)="exportData('xlsx')">xlsx</button>
+                </mat-menu>
+                <button mat-button *ngIf="incidentClaimList && incidentClaimList.length && !isLoadingData"
+                    [ngClass]="isLoadingData || isLoadingBtn ? 'disable-Btn':''" [disabled]="isAccepting || isRejecting"
+                    (click)="reportData()" class="cus-btn-margin cus-btn-shadow">
+                    Report Generation
+                </button>
+            </div>
+            <mat-paginator style="margin-right: 84px;" [length]="pageLength" [pageSize]="getPageOptions()[0]"
+                (page)="onChangePage($event)" [pageSizeOptions]="getPageOptions()" showFirstLastButtons>
+            </mat-paginator>
+
+        </div>
+    </div>
+</mat-card>

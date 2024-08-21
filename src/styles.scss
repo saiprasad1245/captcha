@@ -1,0 +1,320 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+
+$font-family:'Roboto',
+Helvetica,
+Arial,
+sans-serif;
+.roboto-font {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+.ag-theme-alpine .ag-header-cell,
+.ag-theme-alpine .ag-header-group-cell {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.ag-paging-panel {
+    margin-right: 118px;
+    font-size: 12px;
+}
+
+.ag-paging-row-summary-panel {
+    font-size: 12px;
+    color: grey !important;
+}
+
+.ag-paging-description {
+    font-size: 12px;
+    color: grey !important;
+}
+
+.ag-header-row {
+    background-color: blue;
+    color: white !important;
+}
+
+.ag-icon-desc {
+    color: white;
+}
+
+.ag-icon-asc {
+    color: white;
+}
+
+.ag-row-odd {
+    background-color: #fff !important;
+}
+
+.ag-row-selected {
+    background-color: #fff !important;
+}
+
+.ag-has-focus {
+    border: none;
+}
+
+.ag-body-viewport {
+    @extend .custom-scroll
+}
+
+.ag-theme-alpine .ag-cell,
+.ag-theme-alpine .ag-full-width-row .ag-cell-wrapper.ag-row-group {
+    padding-right: 2px;
+    padding-left: 2px;
+    overflow: hidden !important;
+    word-break: break-word !important;
+    text-overflow: none !important;
+    white-space: normal !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    line-height: 26px;
+}
+
+.cell-wrap-text {
+    white-space: normal !important;
+}
+
+
+.cus-checkbox-column {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.ag-header-cell-text {
+    overflow: hidden !important;
+    word-break: break-word !important;
+    text-overflow: none !important;
+    white-space: normal !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.cell-wrap-text {
+    white-space: normal !important;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.headerClass {
+    overflow: hidden;
+    word-wrap: break-word;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+    background-color: initial
+}
+
+body {
+    margin: 0px;
+}
+
+.background-primary {
+    background-color: #3f51b5 !important;
+}
+
+.space-flex {
+    flex: 1 1 auto;
+}
+
+.crypto-input-prefix {
+    .mat-form-field-appearance-outline .mat-form-field-prefix,
+    .mat-form-field-appearance-outline .mat-form-field-suffix {
+        top: 0;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        opacity: 0.7;
+        //    background-color: $trade-prefix-bg;      
+        z-index: 0;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        min-width: 40px;
+        justify-content: center;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-prefix {
+        margin-right: 10px;
+        margin-left: -0.75em;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-suffix {
+        margin-left: 10px;
+        margin-right: -0.75em;
+    }
+}
+
+.trade-crypto {
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+        color: whitesmoke;
+    }
+    .mat-form-field-prefix,
+    .mat-form-field-suffix {
+        background-color: white !important;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 12px 0 12px 0;
+        font-size: 15px;
+    }
+    .mat-form-field-infix {
+        border-top: 0px solid transparent;
+    }
+    .mat-select-trigger {
+        height: auto;
+        padding-bottom: 0;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        top: 0;
+        z-index: 1;
+    }
+    .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+        transform: translate(0);
+    }
+    .mat-form-field-appearance-outline .mat-form-field-prefix,
+    .mat-form-field-appearance-outline .mat-form-field-suffix {
+        top: 0;
+        padding: 0 0.5rem;
+    }
+    .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+    .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
+        transform: translateY(-1.09375em) scale(0.75);
+    }
+}
+
+.full-width {
+    width: 100%
+}
+
+.justify-center {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.pt-0 {
+    padding-top: 0px !important
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-18 {
+    margin-top: 18px;
+}
+
+.mb-10 {
+    margin-top: 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer
+}
+
+.d-none {
+    display: none;
+}
+
+.mat-toolbar {
+    height: 100%;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto'
+}
+
+* {
+    box-sizing: border-box;
+}
+
+mat-toolbar {
+    height: 100% !important;
+}
+
+.mat-flat-button.mat-primary.mat-button-disabled,
+.mat-flat-button.mat-accent.mat-button-disabled,
+.mat-flat-button.mat-warn.mat-button-disabled,
+.mat-flat-button.mat-button-disabled.mat-button-disabled,
+.mat-raised-button.mat-primary.mat-button-disabled,
+.mat-raised-button.mat-accent.mat-button-disabled,
+.mat-raised-button.mat-warn.mat-button-disabled,
+.mat-raised-button.mat-button-disabled.mat-button-disabled,
+.mat-fab.mat-primary.mat-button-disabled,
+.mat-fab.mat-accent.mat-button-disabled,
+.mat-fab.mat-warn.mat-button-disabled,
+.mat-fab.mat-button-disabled.mat-button-disabled,
+.mat-mini-fab.mat-primary.mat-button-disabled,
+.mat-mini-fab.mat-accent.mat-button-disabled,
+.mat-mini-fab.mat-warn.mat-button-disabled,
+.mat-mini-fab.mat-button-disabled.mat-button-disabled {
+    background-color: #8698ff !important;
+    color: white !important;
+    opacity: #8698ff !important;
+}
+
+
+/* width */
+
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+.custom-scroll ::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+
+/* Handle */
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #dedede;
+    border-radius: 8px;
+}
+
+s
+/* Handle on hover */
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #dedede;
+    border-radius: 8px;
+}
+
+.cus-dialog-margin-top {
+    margin-top: 27em;
+}
+
+.cus-dialog-margin-top-reason {
+    margin-top: 30em;
+}
+
+.cus-dialog-margin-top-add {
+    margin-top: 31em;
+}
+
+.cus-text-area{
+    height: 1.1em;
+    max-height: 2.5em;
+}
+
+.mat-button {
+    background-color: #3f51b5 !important;
+    color: white !important;
+    opacity: #8698ff !important;
+}

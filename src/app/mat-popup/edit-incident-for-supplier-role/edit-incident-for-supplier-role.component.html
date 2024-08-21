@@ -1,0 +1,299 @@
+<div class="incident-popup scrollbar custom-scroll" style="font-family: 'Roboto-Medium';">
+    <div class="justify-center">
+        <h2 mat-dialog-title style="margin-bottom:0px">Incident Claim Details</h2>
+
+    </div>
+    <form [formGroup]="incidentForm" style="display: block !important" [ngClass]="isLoading ? 'loader':''">
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Code</mat-label>
+                    <input matInput formControlName="supplierCode" placeholder="Supplier Code" readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('supplierCode').touched && !incidentForm.get('supplierCode').hasError('minlength') && !incidentForm.get('supplierCode').hasError('required') && !incidentForm.get('supplierCode').hasError('whitespace') && incidentForm.get('supplierCode').hasError('pattern')">
+                    Special characters not allowed
+                </mat-error>
+                <mat-error
+                    *ngIf="incidentForm.get('supplierCode').touched && incidentForm.get('supplierCode').hasError('minlength') && !incidentForm.get('supplierCode').hasError('required') && !incidentForm.get('supplierCode').hasError('whitespace')">
+                    Enter a valid Supplier code
+                </mat-error>
+                <mat-error
+                    *ngIf="incidentForm.get('supplierCode').touched && (incidentForm.get('supplierCode').hasError('required') || incidentForm.get('supplierCode').hasError('whitespace'))">
+                    Supplier code is required!
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Name</mat-label>
+                    <input matInput formControlName="supplierName" placeholder="Supplier Name" readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('supplierName').touched && (incidentForm.get('supplierName').hasError('required') || incidentForm.get('supplierName').hasError('whitespace'))">
+                    Supplier name is required!
+                </mat-error>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>SUPREL #</mat-label>
+                    <input matInput formControlName="incidentNumber" placeholder="Incident Number" readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('incidentNumber').touched && incidentForm.get('incidentNumber').hasError('required')">
+                    SUPREL # is required!
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width readOnly-field" appearance="outline">
+                    <mat-label>Incident Status</mat-label>
+                    <input matInput formControlName="incidentStatus" placeholder="Incident Status" readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('incidentStatus').touched && incidentForm.get('incidentStatus').hasError('required')">
+                    Select Incident Status
+                </mat-error>
+            </div>
+
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width readOnly-field" appearance="outline">
+                    <mat-label>Primary Non-Conformity</mat-label>
+                    <!-- <input matInput formControlName="primaryNonConformity" placeholder="Primary Non Conformity"> -->
+                    <input matInput formControlName="primaryNonConformity" placeholder="Primary Non-Conformity"
+                        readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('primaryNonConformity').touched && incidentForm.get('primaryNonConformity').hasError('required')">
+                    Select Primary Non-Conformity
+                </mat-error>
+            </div>
+            <span fxFlex></span>
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width readOnly-field" appearance="outline">
+                    <mat-label>Secondary Non-Conformity</mat-label>
+                    <input matInput formControlName="secondaryNonConformity" placeholder="Secondary Non-Conformity"
+                        readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('secondaryNonConformity').touched && incidentForm.get('secondaryNonConformity').hasError('required')">
+                    Select Primary Non-Conformity
+                </mat-error>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start"
+            class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18">
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width readOnly-field" appearance="outline">
+                    <mat-label>Technical Area</mat-label>
+                    <input matInput formControlName="technicalArea" placeholder="Techinical Area" readonly>
+
+                </mat-form-field>
+                <!-- <mat-error *ngIf="createIncidentForm.get('currency').touched && createIncidentForm.get('currency').hasError('required')">
+                    Select Currency
+                </mat-error> -->
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width readOnly-field" appearance="outline">
+                    <mat-label>Manager Name</mat-label>
+                    <input matInput formControlName="managerName" placeholder=" Manager Name" readonly>
+                </mat-form-field>
+                <!-- <mat-error *ngIf="createIncidentForm.get('currency').touched && createIncidentForm.get('currency').hasError('required')">
+                    Select Currency
+                </mat-error> -->
+            </div>
+
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start"
+            class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18 ">
+            <div class="pad-t-sm" fxFlex.gt-sm="99" fxFlex.gt-md="99" fxFlex.gt-xs="99" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Details</mat-label>
+                    <textarea class="cus-text-area" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5" maxlength='2000' matInput formControlName="details" placeholder="Details" 
+                    readonly></textarea>
+                </mat-form-field>
+                <p *ngIf="!(incidentForm.get('details').touched && incidentForm.get('details').hasError('required'))" class="file-size">
+                    Details required min 50 characters for a claim and max 2000 characters.</p>
+                <mat-error
+                    *ngIf="incidentForm.get('details').touched && (incidentForm.get('details').hasError('required') || incidentForm.get('details').hasError('whitespace'))">
+                    Details is required!
+                </mat-error>
+            </div>
+
+        </div>
+
+        <div *ngIf="incidentForm.get('managerComments').value !=''" fxLayout="row wrap" fxLayoutAlign="start"
+        class="gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18 ">
+        <div class="pad-t-sm" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Manager Comments</mat-label>
+                <textarea class="cus-text-area" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5" maxlength='2000' matInput formControlName="managerComments" readonly
+                    placeholder="Manager Comments"></textarea>
+            </mat-form-field>
+            <mat-error
+                *ngIf="incidentForm.get('managerComments').touched && (incidentForm.get('managerComments').hasError('required') || incidentForm.get('managerComments').hasError('whitespace'))">
+                Manager Comments is required!
+            </mat-error>
+        </div>
+
+    </div>
+
+        <div *ngIf="incidentForm.get('supplierComments').value !=''"
+            fxLayout="row wrap" fxLayoutAlign="start"
+            class=" gene-form-wizard cus-jus-center trade-crypto crypto-input-prefix mt-18 ">
+            <div class="pad-t-sm" fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Supplier Comments</mat-label>
+                    <textarea class="cus-text-area" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5" maxlength='2000' matInput formControlName="supplierComments" readonly
+                        placeholder="Supplier Comments"></textarea>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('supplierComments').touched && (incidentForm.get('supplierComments').hasError('required') || incidentForm.get('supplierComments').hasError('whitespace'))">
+                    Supplier Comments is required!
+                </mat-error>
+            </div>
+
+        </div>
+
+       
+
+        <mat-spinner *ngIf=" isLoading" class="cus-mat-spinner" [diameter]="50">
+        </mat-spinner>
+
+        <div *ngIf="incidentForm.contains('amount') && incidentForm.get('amount').value !='' &&
+        incidentForm.get('currency').value !=''" fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+        <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+            <mat-form-field class="full-width readOnly-field" appearance="outline">
+                <mat-label>Currency</mat-label>
+                <input matInput formControlName="currency" placeholder="Currency" readonly>
+            </mat-form-field>
+            <mat-error
+                 *ngIf="incidentForm.get('currency').touched && incidentForm.get('currency').hasError('required')">
+                 Select Currency
+            </mat-error>
+        </div>
+            
+            <span fxFlex></span>
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input matInput formControlName="amount" placeholder="Amount" readonly>
+                </mat-form-field>
+                <mat-error
+                    *ngIf="incidentForm.get('amount').touched && (incidentForm.get('amount').hasError('required'))">
+                    Amount is required!
+                </mat-error>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start" class="
+        gene-form-wizard
+        cus-jus-center
+        trade-crypto
+        crypto-input-prefix mt-18
+      ">
+            <!-- <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100" *ngIf="isViewMode">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>File Upload</mat-label>
+                    <mat-icon matSuffix color="primary" class="cursor-pointer" matTooltip="Click to download {{incidentForm.value.file}}" (click)="!isDownloading ? downLoadCertificate(incidentForm) : ''">
+                        cloud_download
+                    </mat-icon>
+                   
+                    <input matInput formControlName="file" readonly placeholder="No File Chosen">
+
+                    <input type="file" class="d-none" (change)="onSelectingFile($event)" #fileInput accept=".pdf">
+                </mat-form-field>
+            </div> -->
+
+            <div class="pad-t-sm" fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Issued Date</mat-label>
+                    <input matInput readonly formControlName="issuedDate" placeholder="Issued Date">
+                </mat-form-field>
+            </div>
+            <span fxFlex></span>
+            <div class="pad-t-sm " fxFlex.gt-sm="49" fxFlex.gt-md="49" fxFlex.gt-xs="49" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Incident Originator </mat-label>
+                    <input matInput readonly formControlName="originator" placeholder="Issued Date">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start" class=" gene-form-wizard cus-jus-center trade-crypto mt-18">
+            <div class="pad-t-sm " fxFlex.gt-sm="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-form-field class="full-width" appearance="outline">
+                    <div style="height: 20px;">
+                        <button mat-button class="btnclor">File Upload
+                        </button>
+                        <input matInput formControlName="file" readonly placeholder="File Chosen" hidden="true">
+                        <input type="file" class="d-none" multiple #fileInput accept=".pdf">
+                    </div>
+                    <div *ngFor="let files of allFiles;let i=index" style="height:27px;position: relative;top:15px">
+                        <input matInput readonly [value]="files">
+                        <button class="btnClose" matSuffix mat-icon-button aria-label="Clear"
+                        *ngIf="files!='' && files.includes('Disputed_') && incidentForm.get('incidentStatus').value=='Issued'" (click)="onDeletingFile(i,incidentForm,files)">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button class="btnDownload" color="primary"
+                        *ngIf="(files!='' && !files.includes('Disputed_')) || incidentForm.get('incidentStatus').value!='Issued'" mat-icon-button
+                            matTooltip="Click to download {{files}}">
+                            <mat-icon (click)="!isDownloading ? downLoadCertificate(incidentForm,files) : ''">
+                                cloud_download
+                            </mat-icon>
+                        </button>
+                    </div>
+                </mat-form-field>
+                <p *ngIf="!(incidentForm.get('file').touched && incidentForm.get('file').hasError('required'))"
+                    class="file-size">Max file size 2MB for Each File and Special characters not allowed in File Name.</p>
+                <mat-error *ngIf="incidentForm.get('file').touched && incidentForm.get('file').hasError('required')">
+                    File is required
+                </mat-error>
+            </div>
+        </div>
+
+    </form>
+    <div class="cus-mt">
+        <div class="button-row justify-center">
+            <button mat-raised-button color="primary" *ngIf=!isViewMode (click)="acceptClaimOperation('Accept')"
+                [disabled]="isAccepting || isDisputing|| isLoading">{{'Accept'}}
+            </button>
+            <button mat-raised-button color="primary" [disabled]="isAccepting || isDisputing|| isLoading" class="cus-btn-margin"
+                *ngIf=!isViewMode (click)="disputeClaim()">{{isDisputing ? 'Disputing' : 'Dispute'}}</button>
+            <button mat-raised-button color="primary" [disabled]="isAccepting || isDisputing|| isLoading"
+                class="cus-btn-margin" (click)="closePopup()">Exit</button>
+        </div>
+    </div>
+</div>

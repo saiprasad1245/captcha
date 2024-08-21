@@ -1,0 +1,50 @@
+<div *ngIf="isLoading" class="loader-container">
+    <div class="loader"></div>
+</div>
+<section class="app-container">
+    <header>
+        <mat-toolbar class="cus-toolbar">
+            <!-- <img class="suprel-logo" src="assets\images\logo.png" alt=""> -->
+            <span class="navbar-content roboto-font">
+                <p class="cus-header-text">SUPPLIER RELATIONSHIP INCIDENT CLAIMS</p>
+                <!-- <p class="cus-sub-header-text">I AM YOUR AUTOMOTIVE QUALITY STANDARD</p> -->
+            </span>
+            <span class="space-flex"></span>
+            <span class="logo-section">
+                <img class="cus-logo" src="assets\logos\stell-logo-white.svg" alt="">
+                <span class="user-details-text"><span *ngIf="userDetails">
+                        <mat-icon class=" cus-help ">
+                            help
+                        </mat-icon>
+                        <span class="cus-dropdwn cursor-pointer" [matMenuTriggerFor]="menu"></span>
+                        <!-- <mat-select #dropdown class="dropdown">
+                            <mat-option value='Suprel_info'>Suprel Info</mat-option>
+                            <mat-option value='Originator'>Originator</mat-option>
+                        </mat-select> -->
+                        <mat-menu #menu>
+                          
+                            
+                            <button mat-menu-item  matTooltip="Supplier Relationship Incident Claim (SUPREL) Training" (click)="downloadSuprelGuide()">
+                                <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
+                                <img class="cus-logo1" src="assets\images\PDF_file_icon.png" alt="">
+                                Supplier Relationship Incident Claim (SUPREL) Training Document</button>
+                            <!-- <button mat-menu-item >xlsx</button> -->
+                        </mat-menu>
+                        <span class="space-flex" style="margin-left: 5px;"></span>
+                        <!-- <mat-icon matSuffix class="cursor-pointer cus-dropdwn">keyboard_arrow_down</mat-icon> -->
+                        Current User : {{userDetails ? userDetails.userId : ''}} ({{userDetails.userRole ?
+                        userDetails.userRole : ''}})
+                        <!-- <span class="cursor-pointer" (click)="signOut()">
+                            Sign Out</span> -->
+                    </span>
+
+                    <!-- <a href="www.google.com">Sign Out</a> -->
+                </span>
+            </span>
+           
+        </mat-toolbar>
+    </header>
+    <section *ngIf="!isLoading && userDetails" class="content-container custom-scroll">
+        <router-outlet></router-outlet>
+    </section>
+</section>

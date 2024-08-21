@@ -1,0 +1,442 @@
+.cus-mat-table {
+    margin-top: 15px;
+    position: relative;
+}
+
+.cus-btn-margin {
+    margin-left: 10px;
+}
+
+.cus-search-btn {
+    margin-top: -10px;
+
+}
+.cus-bulk-download-btn {
+    margin-right: -14px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.cus-link {
+    text-decoration: underline;
+}
+
+.cus-min-height {
+    min-height: 13.9em;
+}
+
+.color-green {
+    color: white;
+    background-color: green;
+    //border: 1px solid white;
+}
+
+.color-yellow {
+    color: black;
+    background-color: yellow;
+    //border: 1px solid black;
+}
+
+.color-orange {
+    color: black;
+    background-color: orange;
+    //border: 1px solid black;
+}
+
+.color-red {
+    color: white;
+    background-color: red;
+    //border: 1px solid white;
+}
+
+.color-gray {
+    color: white;
+    background-color: gray;
+}
+
+.color-blue {
+    color: black;
+    background-color: #6faae4;
+    //border: 1px solid white;
+}
+
+.cus-table-header-text {
+    margin-bottom: 9px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.cus-margin-bottom {
+    margin-bottom: 16px;
+}
+
+mat-header-cell,
+mat-header-row,
+.mat-header-cell-def {
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #224a95;
+    color: white;
+    position: relative;
+
+}
+
+// mat-cell{
+//     position: relative;
+//     right: 25px;
+// }
+
+::ng-deep .mat-sort-header-arrow {
+    color: white
+}
+
+::ng-deep .mat-sort-header-arrow :hover {
+    color: white
+}
+
+.cus-btn-shadow {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+        rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+        rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    color: white;
+    //border-radius: 16px;
+    background-color: #224a95;
+}
+
+mat-cell,
+mat-header-cell {
+    word-wrap: initial;
+    display: table-cell;
+    padding: 0px 10px;
+    line-break: unset;
+    width: 100%;
+    //white-space: nowrap;
+    position: relative;
+    //left: 20px;
+    //overflow: hidden;
+    vertical-align: middle;
+}
+
+// mat-row,
+// mat-header-row {
+//     display: table-row;
+//     //word-break: break-all;
+
+// }
+
+.cus-export {
+    text-align: end;
+    margin-top: 15px;
+}
+
+mat-paginator {
+    background: none;
+}
+
+.cus-mat-spinner {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters-container {
+    overflow: hidden;
+    max-height: 50px;
+    transition: max-height .5s ease-in-out;
+
+    &.animate {
+        max-height: 60px !important;
+    }
+}
+
+.role-header-text {
+    padding-bottom: 20px;
+    place-content: center !important;
+    font-size: 19px;
+}
+
+.searchForm ::ng-deep .mat-error {
+    font-size: 11px;
+    margin-top: -24px
+}
+
+.cus-table-height {
+    // min-height: 25.125em;
+    max-height: 20.125em;
+    overflow-y: auto;
+}
+
+.cus-mat-column {
+    // flex: 3%;
+    // overflow: unset;
+    // word-wrap: unset;
+    word-break: break-all;
+}
+
+.cus-column-pad-left {
+    padding-left: 4px;
+}
+
+.cus-column-pad-right {
+    padding-right: 4px;
+}
+.cus-dropdown{
+    flex-direction: row;   
+    display: flex;
+    border-width: thin;
+    border-radius: 5px;
+    width: 124px;
+    border: 1px solid #80808042;
+    padding: 7px;
+    display: inline-flex;
+    align-items: baseline;
+    box-sizing: border-box;
+    color: #726b6bc7;
+    white-space: nowrap;
+}
+
+.cus-mat-table mat-cell {
+    font-size: 12px;
+    //padding-right: 2px;
+    padding-left: 0.5px;
+    padding-top: 15px;
+    // word-break: break-all;
+}
+
+.col-header-pad {
+    //padding-right: 2px;
+    padding-left: 0.5px;
+    padding-top: 15px;
+}
+
+.cus-export-button {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.custom-spinner {
+    position: absolute;
+}
+
+// .custom-spinner {
+::ng-deep .custom-spinner {
+    svg circle {
+        stroke: #7b7b7b;
+    }
+}
+
+::ng-deep .cus-mat-checkbox {
+    .mat-checkbox-frame {
+        border-color: white;
+    }
+}
+
+// }
+.cus-add-supplier-btn {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+}
+
+.cus-popup-link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+.loader {
+    pointer-events: none;
+    //overflow: hidden;
+}
+
+.cus-page-size-options {
+    margin-top: -34px;
+    position: relative;
+    float: right;
+    margin-right: 28em;
+
+    span {
+        font-size: 12px;
+        color: grey;
+    }
+}
+
+.cus-select-border {
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.cus-select-border :focus-visible {
+    outline: none !important;
+}
+
+.wrapper {
+    height: 325px;
+    margin-left: -10px;
+    margin-right: -20px;
+}
+
+table {
+    width: 105%;
+    table-layout: fixed;
+}
+
+.col-sm {
+    width: 70px;
+}
+
+.disable-Btn {
+    background-color: #8698ff !important;
+    color: white;
+    pointer-events: none;
+}
+
+// ::ng-deep .cdk-virtual-scroll-content-wrapper {
+//     // transform: translateY(0px) !important;
+// }
+
+::ng-deep cdk-virtual-scroll-viewport {
+    transform: none !important;
+}
+
+.disabled-radio {
+    pointer-events: none;
+}
+
+cdk-virtual-scroll-viewport {
+    overflow: auto;
+    //overflow-x: hidden;
+}
+
+.cus-table-min-height-5 {
+    height: 19.125em !important;
+}
+
+.cus-table-min-height-1 {
+    height: 6.6em !important;
+}
+
+.cus-table-min-height-2 {
+    height: 9.9em !important;
+}
+
+.cus-table-min-height-3 {
+    height: 12.9em !important;
+}
+
+.cus-table-min-height-4 {
+    height: 15.9em !important;
+}
+
+.cus-table-max-height {
+    height: 25.125em !important;
+}
+
+.bg {
+    background-image: url('../../assets/images/abstractBlue_img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    width: 100%;
+}
+
+.tbleBg {
+    background-image: url('../../assets/images/abstractBlue_img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    //display: flex;
+    width: 100%;
+}
+.bulk-button-border {
+    border-radius: 0px 5px 5px 0px;
+    margin-right: 10px;
+}
+.mat-chip.mat-standard-chip {
+    width: 100px;
+    text-align: center;
+    display: block;
+
+}
+
+.color-none {
+    background: none;
+}
+
+.mat-standard-chip {
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 7px 12px;
+    border-radius: 16px;
+    align-items: center;
+    cursor: default;
+    min-height: 32px;
+}
+
+
+.mat-chip.mat-standard-chip::after {
+    background: none !important; // color that you want on hover
+}
+
+mat-menu {
+    max-height: 300px;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .issued-date-css {
+        margin-left: 20px;
+    }
+}
+
+.cus-radio {
+    position: relative;
+    left: 20px;
+}
+
+.cus-btn {
+    background-color: #224a95;
+    color: white;
+    //border-radius: 16px;
+}
+
+.cus-link-highlighted {
+    //border-radius: 16px;
+    background-color: #3f51b5;
+    color: white;
+    text-decoration: underline;
+}
+
+.cus-link {
+    background-color: white;
+    color: #3f51b5;
+    //border-radius: 16px;
+    text-decoration: underline;
+}
+
+.cus-mat-info-icon {
+    font-size: 20px;
+    height: 22px;
+    margin-left: 3px;
+    margin-top: 2px;
+    width: 22px;
+}

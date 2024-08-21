@@ -1,0 +1,24 @@
+p {
+    font-family: Lato;
+}
+
+.cus-chart {
+    // width: 440px !important;
+    // height: 440px !important;
+    position: relative;
+}
+.cus-dropdown{
+    width: 200px;
+    position: relative;
+    right: 20px;
+    //top:10px;
+}
+.cus-mat-form{
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 180px;
+    height: 10px;
+    bottom: 10px;
+}
